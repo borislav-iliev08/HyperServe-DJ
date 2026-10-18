@@ -5,7 +5,11 @@ from django.utils.text import slugify
 # Create your models here.
 class Perks(models.Model):
     name = models.CharField(max_length=50,unique=True)
+    is_active = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = "Perk"
+        verbose_name_plural = "Perks"
 
 class Restaurant(models.Model):
     class TypeChoices(models.TextChoices):
