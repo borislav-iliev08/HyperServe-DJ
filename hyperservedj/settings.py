@@ -134,7 +134,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'templates' / 'static',
+    BASE_DIR / 'templates/static',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles_collected'
