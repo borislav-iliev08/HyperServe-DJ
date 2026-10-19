@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 
+from restaurants.validators import validate_real_domain
+
 
 # Create your models here.
 class Perks(models.Model):
@@ -20,8 +22,9 @@ class Restaurant(models.Model):
         IN = 'Indonesian','Indonesian'
         SP = 'Spanish','Spanish'
         OT = 'Other','Other'
-    name = models.CharField(max_length=50)
-    address = models.CharField(max_length=200)
+    name = models.CharField(max_length=50,unique=True)
+    address = models.CharField(max_length=200,unique=True)
+    email = models.EmailField(unique=True,validators=[validate_real_domain])
     description = models.TextField(blank=True,null=True)
     cuisine_type = models.CharField(choices=TypeChoices.choices,default=TypeChoices.OT,max_length=30)
     perks = models.ManyToManyField(Perks,blank=True,related_name='restaurant_perks')
