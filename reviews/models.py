@@ -12,3 +12,6 @@ class Review(models.Model):
     restaurant = models.ForeignKey(Restaurant,on_delete=models.SET_NULL,blank=True,null=True,related_name='restaurant_reviews')
     is_flagged = models.BooleanField(default=False,editable=False)
 
+    class Meta:
+        verbose_name = "Review"
+        verbose_name_plural = "Reviews"

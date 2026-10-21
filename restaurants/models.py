@@ -29,7 +29,7 @@ class Restaurant(models.Model):
     cuisine_type = models.CharField(choices=TypeChoices.choices,default=TypeChoices.OT,max_length=30)
     perks = models.ManyToManyField(Perks,blank=True,related_name='restaurant_perks')
     owner = models.CharField(max_length=50)
-    rating = models.PositiveIntegerField()
+    rating = models.PositiveIntegerField(default=0)
     slug = models.CharField(max_length=50,blank=True,null=True)
 
     def save(self,*args,**kwargs):
@@ -37,6 +37,9 @@ class Restaurant(models.Model):
             self.slug =slugify(f'{self.name} {self.cuisine_type}')
         super().save(*args,**kwargs)
 
+    class Meta:
+        verbose_name = "Restaurant"
+        verbose_name_plural = "Restaurants"
 
 
 

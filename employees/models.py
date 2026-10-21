@@ -25,8 +25,11 @@ class Employee(models.Model):
     profile_picture = models.ImageField(upload_to='employees/', blank=True, null=True)
     position = models.CharField(choices=PositionChoices.choices,max_length=20,default=PositionChoices.OT)
     restaurant = models.ForeignKey(Restaurant,on_delete=models.SET_NULL,blank=True,null=True)
-    rating = models.PositiveIntegerField(validators=[MinValueValidator(1),MaxValueValidator(6)])
+    rating = models.PositiveIntegerField(validators=[MinValueValidator(1),MaxValueValidator(6)],default=0)
 
+    class Meta:
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
 
 class EmployeeReview(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='reviews')
@@ -35,4 +38,8 @@ class EmployeeReview(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=50)
     is_flagged = models.BooleanField(default=False,editable=False)
+
+    class Meta:
+        verbose_name = "Employee Review"
+        verbose_name_plural = "Employee Reviews"
 
