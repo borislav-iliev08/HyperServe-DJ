@@ -1,12 +1,13 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from hyperservedj.mixins import DisabledFormMixin
 from restaurants.models import Restaurant
 
 
 class RestaurantBaseForm(forms.ModelForm):
     class Meta:
         model = Restaurant
-        exclude =['slug','rating']
+        exclude =['slug']
         widgets={
             'name':forms.TextInput(attrs={
                 'class': 'form-control',
@@ -82,18 +83,14 @@ class RestaurantBaseForm(forms.ModelForm):
 
 
 
+
 class RestaurantCreateForm(RestaurantBaseForm):
     ...
 
 class RestaurantDeleteForm(RestaurantBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args,**kwargs)
-        for field in self.fields.values():
-            field.disabled = True
+    ...
 
-class RestaurantEditForm(RestaurantBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['owner'].disabled =True
+class RestaurantEditForm(DisabledFormMixin,RestaurantBaseForm):
+    ...
 
 

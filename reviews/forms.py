@@ -1,11 +1,13 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from hyperservedj.mixins import DisabledFormMixin
 from .models import Review
+
 
 class ReviewBaseFrom(forms.ModelForm):
     class Meta:
         model = Review
-        exclude =['created_at','is_flagged','restaurant']
+        exclude =['created_at','is_flagged']
         widgets = {
             'author': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -60,12 +62,7 @@ class ReviewCreateForm(ReviewBaseFrom):
     ...
 
 class ReviewEditForm(ReviewBaseFrom):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['author'].disabled = True
+    ...
 
-class ReviewDeleteForm(ReviewBaseFrom):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.disabled = True
+class ReviewDeleteForm(DisabledFormMixin,ReviewBaseFrom):
+    ...

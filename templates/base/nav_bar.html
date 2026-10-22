@@ -1,0 +1,28 @@
+﻿{% load static %}
+<aside class="sidebar floating-sidebar" aria-label="Main navigation">
+    <p class="sidebar-heading">Explore</p>
+    <nav class="sidebar-navigation">
+        <a class="sidebar-link{% if request.path == '/' %} is-active{% endif %}" href="/">
+            <span class="sidebar-icon" aria-hidden="true">⌂</span>
+            <span>Home</span>
+        </a>
+        <a class="sidebar-link{% if '/restaurants/' in request.path %} is-active{% endif %}" href="/restaurants/">
+            <span class="sidebar-icon" aria-hidden="true">✳</span>
+            <span>Restaurants</span>
+        </a>
+        <a class="sidebar-link{% if '/reviews/' in request.path %} is-active{% endif %}" href="/reviews/">
+            <span class="sidebar-icon" aria-hidden="true">✎</span>
+            <span>Reviews</span>
+        </a>
+        <a class="sidebar-link{% if '/employees/' in request.path %} is-active{% endif %}" href="/employees/">
+            <span class="sidebar-icon" aria-hidden="true">♧</span>
+            <span>Employees</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <span class="sidebar-note">Good food brings us together.</span>
+        <a class="button sidebar-button" href="/restaurants/create/">Add Restaurant <span>↗</span></a>
+    </div>
+</aside>
+

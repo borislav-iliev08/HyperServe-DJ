@@ -16,11 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.views.static import serve
+
+from .views import custom_404
 
 urlpatterns = [
+    path('static/<path:path>', serve, {'document_root': settings.BASE_DIR / 'templates' / 'static'}),
     path('admin/', admin.site.urls),
     path('reviews/',include('reviews.urls')),
     path('restaurants/',include('restaurants.urls')),
-    path('empleeys/',include('employees.urls')),
+    path('employees/',include('employees.urls')),
 
 ]
+handler404 = custom_404

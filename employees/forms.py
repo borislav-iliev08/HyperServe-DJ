@@ -3,6 +3,7 @@ import re
 from django import forms
 from django.core.exceptions import ValidationError
 
+from hyperservedj.mixins import DisabledFormMixin
 from .models import Employee,EmployeeReview
 
 class EmployeeBaseForm(forms.ModelForm):
@@ -71,14 +72,10 @@ class EmployeeCreateForm(EmployeeBaseForm):
     ...
 
 class EmployeeEditForm(EmployeeBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    ...
 
-class EmployeeDeleteForm(EmployeeBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.disabled = True
+class EmployeeDeleteForm(DisabledFormMixin,EmployeeBaseForm):
+    ...
 
 
 
@@ -144,12 +141,7 @@ class EmployeeReviewCreateForm(EmployeeReviewBaseForm):
     ...
 
 class EmployeeReviewEditForm(EmployeeReviewBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['author'].disabled = True
+    ...
 
-class EmployeeReviewDeleteForm(EmployeeReviewBaseForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.disabled = True
+class EmployeeReviewDeleteForm(DisabledFormMixin,EmployeeReviewBaseForm):
+    ...

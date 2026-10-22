@@ -9,6 +9,7 @@ class Review(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=50,validators=[MinLengthValidator(3,message='Authors\'s name must be at least 3 symbols long!')])
     created_at = models.DateTimeField(auto_now_add=True)
+    rating = models.DecimalField(max_digits=4,decimal_places=2)
     restaurant = models.ForeignKey(Restaurant,on_delete=models.SET_NULL,blank=True,null=True,related_name='restaurant_reviews')
     is_flagged = models.BooleanField(default=False,editable=False)
 

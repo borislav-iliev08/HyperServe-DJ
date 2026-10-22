@@ -1,0 +1,46 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#26382d">
+    <meta name="description" content="The page you are looking for could not be found.">
+    <title>Page not found | HyperServe</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="error-404">
+    <main class="error-404-card">
+        <header class="error-404-header">
+            <a class="error-404-brand" href="/" aria-label="HyperServe home">
+                <span class="error-404-mark">H<span>&amp;</span>S</span>
+                <span class="error-404-brand-copy"><strong>HyperServe</strong><small><span aria-hidden="true">&#10022;</span> DINING &middot; HOSPITALITY</small></span>
+            </a>
+            <span class="error-404-status"><i></i> Page not found</span>
+        </header>
+        <section class="error-404-content" aria-labelledby="error-title">
+            <div class="error-404-copy">
+                <p class="error-404-kicker">A little detour</p>
+                <h1 id="error-title">This page left<br><em>the table.</em></h1>
+                <p class="error-404-message">We checked the menu, but couldn&#8217;t find that address. There are plenty of good things still cooking.</p>
+                <nav class="error-404-actions" aria-label="Helpful links">
+                    <a class="error-404-button" href="/">Back home <span aria-hidden="true">&#8599;</span></a>
+                    <a class="error-404-link" href="/restaurants/">Explore restaurants <span aria-hidden="true">&#8594;</span></a>
+                </nav>
+            </div>
+            <div class="error-404-art" aria-hidden="true">
+                <span class="error-404-art-label">TABLE NO. 04</span>
+                <div class="error-404-napkin"></div>
+                <div class="error-404-plate"><span>404</span><small>OFF THE MENU</small></div>
+                <span class="error-404-herb herb-one"></span><span class="error-404-herb herb-two"></span>
+                <span class="error-404-star star-one">&#10043;</span><span class="error-404-star star-two">&#10022;</span>
+                <span class="error-404-art-note">Fresh start, anyone?</span>
+            </div>
+        </section>
+        <footer class="error-404-footer"><span>HYPERSERVE</span><i></i><span>HOSPITALITY, THOUGHTFULLY SERVED</span></footer>
+    </main>
+</body>
+</html>

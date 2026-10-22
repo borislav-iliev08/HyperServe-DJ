@@ -5,71 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f7f5ef">
-    <meta name="description" content="HyperServe - Restaurant Management & Service Platform">
+    <meta name="description" content="HyperServe dining and hospitality platform">
     <title>{% block title %}HyperServe{% endblock %}</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="/static/style.css?v=brand-tag1">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="site-header">
-        <div class="container header-inner">
-            <a class="brand" href="#" aria-label="HyperServe home">
-                <span class="brand-mark" aria-hidden="true">H<span>&amp;</span>S</span>
-                <span class="brand-copy"><strong>HyperServe</strong><small>DINING PLATFORM</small></span>
-            </a>
-            <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Restaurants</a>
-                <a href="#" class="nav-link">Reviews</a>
-                <a href="#" class="button button-small">Add Restaurant</a>
-            </nav>
-        </div>
-    </header>
+    {% include 'base/header.html' %}
+
+    {% include 'base/nav_bar.html' %}
 
     <main id="main-content">
         {% if messages %}
             <div class="container mt-3">
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                    <div class="alert" role="status">{{ message }}</div>
                 {% endfor %}
             </div>
         {% endif %}
 
         {% block content %}
-        <!-- Тук се зарежда динамичното съдържание на страниците -->
+
         {% endblock %}
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-main">
-            <a class="brand brand-footer" href="#">
-                <span class="brand-mark" aria-hidden="true">H<span>&amp;</span>S</span>
-                <span class="brand-copy"><strong>HyperServe</strong><small>DINING PLATFORM</small></span>
-            </a>
-            <p>Quality food. Excellent service. Seamless management.</p>
-            <a class="footer-top" href="#main-content">Back to top ↑</a>
-        </div>
-        <div class="container footer-bottom">
-            <span>© {% now "Y" %} HyperServe</span>
-            <span>SoftUni Exam Project</span>
-        </div>
-    </footer>
-
-    
+    {% include 'base/footer.html' %}
 </body>
 </html>
+
