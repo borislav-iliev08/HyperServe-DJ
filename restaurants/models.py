@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 from restaurants.validators import validate_real_domain
@@ -8,6 +9,9 @@ from restaurants.validators import validate_real_domain
 class Perks(models.Model):
     name = models.CharField(max_length=50,unique=True)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "Perk"
@@ -25,11 +29,16 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=50,unique=True)
     address = models.CharField(max_length=200,unique=True)
     email = models.EmailField(unique=True,validators=[validate_real_domain])
+    image = models.ImageField(upload_to='restaurants/', blank=True, null=True)
     description = models.TextField(blank=True,null=True)
     cuisine_type = models.CharField(choices=TypeChoices.choices,default=TypeChoices.OT,max_length=30)
     perks = models.ManyToManyField(Perks,blank=True,related_name='restaurant_perks')
     owner = models.CharField(max_length=50)
     slug = models.CharField(max_length=50,blank=True,null=True)
+
+    def get_absolute_url(self):
+        identifier = self.slug or self.pk
+        return reverse('restaurant-detail', kwargs={'slug': identifier})
 
     def save(self,*args,**kwargs):
         if not self.slug:

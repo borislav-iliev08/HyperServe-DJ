@@ -17,7 +17,9 @@ class Employee(models.Model):
         HO = 'Host', 'Host'
         MA = 'Manager', 'Manager'
         CL = 'Cleaner', 'Cleaner'
+        CE = 'CEO','CEO'
         OT = 'Other', 'Other'
+        
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True,validators=[validate_real_domain])

@@ -17,6 +17,9 @@ class RestaurantBaseForm(forms.ModelForm):
                 'class':'form-control',
                 'placeholder':'Enter the restaurant\'s current address!'
             }),
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'form-control'
+            }),
             'email':forms.EmailInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Enter restaurant\'s email (e.g. restaurant@gmail.com)'
@@ -37,7 +40,8 @@ class RestaurantBaseForm(forms.ModelForm):
 
         }
         help_texts ={
-            'perks':'Choose restaurant\'s benefits!'
+            'perks':'Choose restaurant\'s benefits!',
+            'image':'Upload a restaurant photo (optional).'
         }
         error_messages = {
             'name':{
@@ -85,12 +89,14 @@ class RestaurantBaseForm(forms.ModelForm):
 
 
 class RestaurantCreateForm(RestaurantBaseForm):
+    class Meta(RestaurantBaseForm.Meta):
+        ...
+
+class RestaurantDeleteForm(DisabledFormMixin,RestaurantBaseForm):
     ...
 
-class RestaurantDeleteForm(RestaurantBaseForm):
-    ...
-
-class RestaurantEditForm(DisabledFormMixin,RestaurantBaseForm):
-    ...
+class RestaurantEditForm(RestaurantBaseForm):
+    class Meta(RestaurantBaseForm.Meta):
+        exclude = ['slug','owner']
 
 

@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}HyperServe | Find your next favorite table{% endblock %}
+{% block content %}
+<section class="home-hero home-hero-official">
+    <div class="container home-official-inner">
+        <p class="home-official-label">HYPERSERVE <span>/</span> RESTAURANT &amp; HOSPITALITY DIRECTORY</p>
+        <div class="home-official-main">
+            <h1>Explore restaurants<br><em>across the world.</em></h1>
+            <div class="home-official-intro"><span></span>
+                <p>Browse a growing directory of restaurants, read guest reviews, and discover the teams behind each experience.</p>
+            </div>
+        </div>
+        <div class="home-official-footer"><span>RESTAURANTS</span>
+            <i></i><span>HOSPITALITY TEAMS</span>
+            <i></i><span>GUEST REVIEWS</span>
+        </div>
+    </div>
+</section>
+<section class="section-space home-highlights">
+    <div class="container home-highlights-grid">
+<section class="home-block" aria-labelledby="top-restaurants-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow"><span></span> Guest favorites</p>
+            <h2 id="top-restaurants-title">Top 5 restaurants</h2>
+        </div>
+        <a class="button button-small" href="/restaurants/">All restaurants <span>→</span></a>
+    </div>
+    <div class="home-list">
+        {% for restaurant in top_restaurants %}
+            <article class="home-rank-card"><span class="home-rank">
+                {{ forloop.counter|stringformat:"02d" }}</span>
+                <div class="home-rank-copy">
+                    <h3>
+                        <a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
+                    </h3><p>{{ restaurant.cuisine_type }}</p>
+                </div><span class="home-score">★ {{ restaurant.avg_rating|floatformat:1|default:"—" }}</span>
+            </article>
+        {% empty %}
+            <p class="home-empty">Restaurant ratings will appear here as guests leave reviews.</p>
+        {% endfor %}
+    </div>
+</section>
+<section class="home-block" aria-labelledby="top-chefs-title">
+    <div class="section-heading"><div>
+        <p class="eyebrow"><span></span> People to know</p>
+        <h2 id="top-chefs-title">Top 5 chefs</h2>
+    </div>
+    <a class="button button-small" href="/employees/">Meet the team <span>→</span></a>
+    </div>
+    <div class="home-list">
+        {% for chef in top_chefs %}
+            <article class="home-rank-card">
+                {% if chef.profile_picture %}
+                    <img class="home-chef-photo" src="{{ chef.profile_picture.url }}" alt="">
+                {% else %}
+                    <span class="home-chef-initials">
+                        {{ chef.first_name|first }}{{ chef.last_name|first }}</span>
+                {% endif %}
+                <div class="home-rank-copy">
+                    <h3><a href="/employees/{{ chef.pk }}/">{{ chef.first_name }} {{ chef.last_name }}</a></h3>
+                    <p>
+                        {% if chef.restaurant %}{{ chef.restaurant.name }}
+                        {% else %}Chef
+                        {% endif %}</p>
+                </div>
+                <span class="home-score">★ {{ chef.avg_rating|floatformat:1 }}</span>
+            </article>
+        {% empty %}
+            <p class="home-empty">Chef ratings will appear here as the team gets reviewed.</p>
+        {% endfor %}
+    </div>
+</section>
+<section class="home-block" aria-labelledby="latest-reviews-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow"><span></span> Fresh from the table</p>
+            <h2 id="latest-reviews-title">Latest 5 reviews</h2>
+        </div>
+        <a class="button button-small" href="/reviews/">All reviews <span>→</span></a>
+    </div>
+    <div class="home-list home-review-list">
+        {% for review in latest_reviews %}
+            <article class="home-review-card">
+                <div class="home-review-top"><span class="home-score">★ {{ review.rating|floatformat:1 }}</span><span>{{ review.created_at|date:"M d" }}</span>
+                </div>
+                {% if review.is_flagged %}
+                    <span class="flagged-status">
+                        <i aria-hidden="true"></i>Flagged</span>
+                {% endif %}
+                <h3>
+                    <a href="/reviews/{{ review.pk }}/">{{ review.title }}</a></h3>
+                <p>{{ review.content|truncatewords:12 }}</p>
+                <div class="home-review-byline">By {{ review.author }}
+                    {% if review.restaurant %}<span>{{ review.restaurant.name }}</span>
+                    {% endif %}
+                </div>
+            </article>
+        {% empty %}
+            <p class="home-empty">Be the first to share a dining experience.</p>
+        {% endfor %}
+    </div>
+</section>
+</div></section>
+{% endblock %}

@@ -1,1 +1,93 @@
-﻿{% extends 'base/base.html' %}{% block title %}{{ restaurant.name }} · HyperServe{% endblock %}{% block content %}<section class="detail-banner"><div class="container"><p class="eyebrow eyebrow-light"><span></span> {{ restaurant.cuisine_type }}</p><h1>{{ restaurant.name }}</h1><p>{{ restaurant.address }}</p><a class="button button-light" href="/restaurants/{{ restaurant.slug|default:restaurant.pk }}/edit/">Edit listing</a></div></section><section class="section-space"><div class="container detail-layout"><div><p class="eyebrow"><span></span> The story</p><h2>A place to <em>stay awhile.</em></h2><p>{{ restaurant.description }}</p><p class="muted">Owned by {{ restaurant.owner }} · {{ restaurant.email }}</p>{% if restaurant.perks.all %}<h3>Good to know</h3><div class="tag-list">{% for perk in restaurant.perks.all %}<span class="tag">{{ perk.name }}</span>{% endfor %}</div>{% endif %}</div><aside class="detail-aside"><p class="card-kicker">From the community</p><strong class="big-number">{{ restaurant.restaurant_reviews.count }}</strong><p>guest reviews</p><a class="button button-small" href="/reviews/create/?restaurant={{ restaurant.pk }}">Write a review</a></aside></div></section><section class="section-space section-tint"><div class="container"><div class="section-heading"><div><p class="eyebrow"><span></span> Guest notes</p><h2>Reviews</h2></div></div><div class="review-grid">{% for review in restaurant.restaurant_reviews.all %}<article class="review-card"><div class="review-rating">★ {{ review.rating }}</div><h3>{{ review.title }}</h3><p>{{ review.content }}</p><small>By {{ review.author }} · {{ review.created_at|date:"M d, Y" }}</small></article>{% empty %}<p class="muted">No reviews yet. Be the first to share your experience.</p>{% endfor %}</div></div></section>{% endblock %}
+{% extends 'base/base.html' %}
+{% block title %}{{ restaurant.name }} | HyperServe{% endblock %}
+{% block content %}
+<section class="restaurant-detail-banner{% if restaurant.image %} has-restaurant-photo{% endif %}">
+    {% if restaurant.image %}<img class="restaurant-detail-image" src="{{ restaurant.image.url }}" alt="">{% endif %}
+    <div class="container restaurant-detail-banner-content">
+        <p class="eyebrow eyebrow-light"><span></span>
+            {{ restaurant.cuisine_type }}</p>
+        <h1>{{ restaurant.name }}</h1>
+        <p class="restaurant-banner-address">{{ restaurant.address }}</p>
+        <div class="restaurant-detail-rating">
+            {% if restaurant.avg_rating != None %}<strong><span>&#9733;</span>
+                {{ restaurant.avg_rating|floatformat:1 }}</strong>
+                <span>Average guest rating</span>
+            {% else %}
+                <strong>No ratings yet</strong>
+            {% endif %}
+            <i></i><span>{{ review_count }} guest review{{ review_count|pluralize }}</span>
+        </div>
+        <div class="restaurant-detail-actions">
+            <a class="button button-light" href="{% url 'restaurant-edit' slug=restaurant.slug|default:restaurant.pk %}">Edit Restaurant</a>
+            <a class="button button-danger" href="{% url 'restaurant-delete' slug=restaurant.slug|default:restaurant.pk %}">Delete Restaurant</a>
+        </div>
+    </div>
+</section>
+<section class="section-space restaurant-profile-section">
+    <div class="container restaurant-profile-grid">
+        <div class="restaurant-profile-copy">
+            <p class="eyebrow"><span></span> Restaurant profile</p>
+            <h2>About <em>{{ restaurant.name }}</em></h2>
+            <p class="restaurant-profile-description">{{ restaurant.description|default:"More details about this restaurant will be added soon." }}</p>
+            <div class="restaurant-contact-grid">
+                <div><span>Owner</span><strong>{{ restaurant.owner }}</strong></div>
+                <div><span>Email</span><a href="mailto:{{ restaurant.email }}">{{ restaurant.email }}</a></div>
+                <div><span>Location</span><strong>{{ restaurant.address }}</strong></div>
+            </div>
+            {% if restaurant.perks.all %}
+            <div class="restaurant-detail-perks"><h3>Available perks</h3><div class="tag-list">{% for perk in restaurant.perks.all %}<span class="tag">{{ perk.name }}</span>{% endfor %}</div></div>
+            {% endif %}
+        </div>
+        <aside class="restaurant-profile-summary">
+            <p class="card-kicker">Guest feedback</p>
+            <strong class="restaurant-profile-rating">{% if restaurant.avg_rating != None %}<span>&#9733;</span> {{ restaurant.avg_rating|floatformat:1 }}{% else %}<span class="no-rating">Not rated</span>{% endif %}</strong>
+            <p>Average rating from {{ review_count }} guest review{{ review_count|pluralize }}</p>
+            <a class="button button-small" href="/reviews/create/?restaurant={{ restaurant.pk }}">Write a review <span>&rarr;</span></a>
+        </aside>
+    </div>
+    <div class="container restaurant-working-employees">
+        <div class="restaurant-team-heading">
+            <p class="eyebrow"><span></span> The team</p>
+            <h2>Working Employees</h2>
+        </div>
+        <div class="restaurant-team-list">
+            {% for employee in restaurant.working_employees %}
+            <article class="restaurant-team-member">
+                <div class="restaurant-team-avatar" aria-hidden="true">
+                    {{ employee.first_name|first|upper }}{{ employee.last_name|first|upper }}
+                </div>
+                <div class="restaurant-team-copy">
+                    <h3>{{ employee.first_name }} {{ employee.last_name }}</h3>
+                    <span>{{ employee.position }}</span>
+                </div>
+                <div class="restaurant-team-rating">
+                    {% if employee.avg_rating != None %}<strong><span>&#9733;</span>
+                        {{ employee.avg_rating|floatformat:1 }}</strong>
+                        {% else %}
+                        <strong class="no-rating">No rating</strong>
+                    {% endif %}
+                </div>
+            </article>
+            {% empty %}
+            <p class="restaurant-team-empty">No employees are listed for this restaurant yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="section-space restaurant-reviews-section" id="restaurant-reviews">
+    <div class="container">
+        <div class="section-heading"><div><p class="eyebrow"><span></span> Guest feedback</p><h2>Restaurant reviews</h2></div><span class="restaurant-reviews-count">{{ review_count }} review{{ review_count|pluralize }}</span></div>
+        <div class="review-grid restaurant-review-grid">
+            {% for review in reviews %}
+            <article class="review-card restaurant-review-card">
+                <div class="review-rating">&#9733; {{ review.rating|floatformat:1 }}</div>
+                {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged</span>{% endif %}
+                <h3>{{ review.title }}</h3>
+                <p>{{ review.content }}</p>
+                <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>
+            </article>
+            {% empty %}<p class="muted">No reviews yet. Be the first to share your experience.</p>{% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

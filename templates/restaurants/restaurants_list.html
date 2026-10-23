@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+{% block title %}Restaurants | HyperServe{% endblock %}
+{% block content %}
+<section class="page-hero restaurants-hero">
+    <div class="container">
+                <div class="restaurants-hero-title-row">
+            <h1>Restaurants across <em>the world.</em></h1>
+            <span class="restaurants-world-mark" aria-hidden="true">
+                <svg viewBox="0 0 48 48" focusable="false">
+                    <path d="M18 15c-2-2 2-3 0-6M24 14c-2-2 2-3 0-6M30 15c-2-2 2-3 0-6"></path>
+                    <path d="M11 31a13 13 0 0 1 26 0M8 34h32M13 38h22"></path>
+                    <path d="M21 18h6"></path>
+                </svg>
+            </span>
+        </div>
+        <p class="hero-description">Browse restaurants, guest ratings, and perks to find the right place.</p>
+    </div>
+</section>
+<section class="section-space restaurants-directory">
+    <div class="container">
+        <form class="restaurant-search-panel" method="get" action="">
+            {% for selected_perk in selected_perks %}
+                <input type="hidden" name="perks" value="{{ selected_perk }}">
+            {% endfor %}
+            {% for selected_cuisine in selected_cuisines %}
+                <input type="hidden" name="cuisine" value="{{ selected_cuisine }}">
+            {% endfor %}
+            <div class="restaurant-search-row">
+                <label class="restaurant-search-field" for="restaurant-search">
+                    <span class="restaurant-search-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Search by restaurant name</span>
+                    <input id="restaurant-search" type="search" name="q" value="{{ search_query }}" placeholder="Search restaurants by name">
+                </label>
+                <button class="button restaurant-search-button" type="submit">Search</button>
+            </div>
+        </form>
+        <div class="restaurant-results-layout">
+
+            <div class="restaurant-results">
+                <p class="restaurant-result-count">{{ page_obj.paginator.count }} restaurant{{ page_obj.paginator.count|pluralize }}</p>
+                <div class="card-grid restaurant-grid">
+                    {% for restaurant in restaurants %}
+                    <article class="restaurant-card directory-restaurant-card">
+                        {% if restaurant.image %}
+                            <img class="restaurant-card-image" src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}">
+                        {% else %}
+                            <div class="restaurant-card-image-placeholder" aria-label="Restaurant photo placeholder"><span>{{ restaurant.name|first|upper }}</span>
+                                <small>Restaurant photo</small>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <div class="restaurant-card-meta"><span class="card-kicker">{{ restaurant.cuisine_type }}</span><span class="restaurant-rating">{% if restaurant.avg_rating != None %}<b>&#9733;</b> {{ restaurant.avg_rating|floatformat:1 }}{% else %}<span class="rating-unavailable">No ratings</span>{% endif %}</span></div>
+                            <h2><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h2>
+                            <p class="restaurant-description">{{ restaurant.description|default:"A local dining destination ready to welcome you."|truncatechars:125 }}</p>
+                            {% if restaurant.perks.all %}<div class="restaurant-perk-tags">{% for perk in restaurant.perks.all %}<span>{{ perk.name }}</span>{% endfor %}</div>{% endif %}
+                            <p class="restaurant-address">{{ restaurant.address }}</p>
+                            <a class="text-link restaurant-discover-link" href="{{ restaurant.get_absolute_url }}">View details <span>&rarr;</span></a>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <div class="empty-state restaurant-empty-state"><h3>No matching restaurants</h3><p>Try another name or change the perk filters.</p></div>
+                    {% endfor %}
+                </div>
+                {% if is_paginated %}
+                <nav class="restaurant-pagination" aria-label="Restaurant pages">
+                    {% if page_obj.has_previous %}<a href="{% querystring page=page_obj.previous_page_number %}">&larr; Previous</a>{% else %}<span class="is-disabled">&larr; Previous</span>{% endif %}
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_next %}<a href="{% querystring page=page_obj.next_page_number %}">Next &rarr;</a>{% else %}<span class="is-disabled">Next &rarr;</span>{% endif %}
+                </nav>
+                {% endif %}
+            </div>
+            <form class="restaurant-filter-panel" method="get" action="" aria-label="Restaurant filters">
+                <input type="hidden" name="q" value="{{ search_query }}">
+                <h2>Filters</h2>
+                <details class="restaurant-filter-dropdown">
+                    <summary>Perks{% if selected_perks %}<span>{{ selected_perks|length }}</span>{% endif %}</summary>
+                    {% if active_perks %}
+                    <div class="perk-options">
+                        {% for perk in active_perks %}
+                        <label class="perk-option" for="perk-{{ perk.pk }}">
+                            <input id="perk-{{ perk.pk }}" type="checkbox" name="perks" value="{{ perk.pk }}" {% if perk.pk|stringformat:"s" in selected_perks %}checked{% endif %}>
+                            <span>{{ perk.name }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    {% else %}<p class="perk-empty-message">No perks are available yet.</p>{% endif %}
+                </details>
+                <details class="restaurant-filter-dropdown">
+                    <summary>Cuisine{% if selected_cuisines %}<span>{{ selected_cuisines|length }}</span>{% endif %}</summary>
+                    <div class="perk-options">
+                        {% for cuisine_value, cuisine_label in cuisine_choices %}
+                        <label class="perk-option" for="cuisine-{{ forloop.counter }}">
+                            <input id="cuisine-{{ forloop.counter }}" type="checkbox" name="cuisine" value="{{ cuisine_value }}" {% if cuisine_value in selected_cuisines %}checked{% endif %}>
+                            <span>{{ cuisine_label }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                </details>
+                <button class="button perk-apply-button" type="submit">Apply filters</button>
+                <a class="restaurant-clear-button" href="/restaurants/">Clear filters</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
