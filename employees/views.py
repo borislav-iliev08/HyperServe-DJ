@@ -1,9 +1,9 @@
-from django.db.models import Avg, Prefetch, Q
 from django.shortcuts import get_object_or_404
+from django.db.models import Avg, Prefetch, Q
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from employees.forms import EmployeeCreateForm, EmployeeDeleteForm, EmployeeEditForm
+from employees.forms import EmployeeCreateForm, EmployeeEditForm
 from employees.models import Employee
 from reviews.forms import EmployeeReviewCreateForm, EmployeeReviewEditForm
 from reviews.models import EmployeeReview
@@ -23,10 +23,8 @@ class EmployeesListView(ListView):
         )
         search_query = self.request.GET.get('q', '').strip()
         if search_query:
-            queryset = queryset.filter(
-                Q(first_name__icontains=search_query)
-                | Q(last_name__icontains=search_query)
-            )
+            queryset = queryset.filter(Q(first_name__icontains=search_query) | Q(last_name__icontains=search_query))
+
         selected_positions = self.request.GET.getlist('position')
         valid_positions = {value for value, _label in Employee.PositionChoices.choices}
         selected_positions = [position for position in selected_positions if position in valid_positions]
@@ -38,7 +36,7 @@ class EmployeesListView(ListView):
         context = super().get_context_data(**kwargs)
         valid_positions = {value for value, _label in Employee.PositionChoices.choices}
         context.update({
-            'search_query': self.request.GET.get('q', '').strip(),
+            'search_query': self.request.GET.get('q', ''),
             'position_choices': Employee.PositionChoices.choices,
             'selected_positions': [position for position in self.request.GET.getlist('position') if position in valid_positions],
         })
@@ -73,6 +71,7 @@ class EmployeeReviewsListView(ListView):
         context.update({
             'search_query': self.request.GET.get('q', '').strip(),
             'selected_flagged': self.request.GET.get('flagged', ''),
+            'has_any_employee_reviews': EmployeeReview.objects.exists(),
         })
         return context
 
@@ -140,13 +139,13 @@ class EmployeeReviewCreateView(CreateView):
         context['employee'] = self.get_employee()
         return context
 
-    def form_valid(self, form):
-        form.instance.employee = self.get_employee()
-        return super().form_valid(form)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = EmployeeReview(employee=self.get_employee())
+        return kwargs
 
     def get_success_url(self):
         return reverse('employee-detail', kwargs={'pk': self.object.employee_id})
-
 
 class EmployeeReviewEditView(UpdateView):
     model = EmployeeReview
@@ -175,7 +174,6 @@ class EmployeeReviewDeleteView(DeleteView):
 
 class EmployeesDeleteView(DeleteView):
     model = Employee
-    form_class = EmployeeDeleteForm
     context_object_name = 'employee'
     template_name = 'employees/delete.html'
     success_url = reverse_lazy('employees-list')

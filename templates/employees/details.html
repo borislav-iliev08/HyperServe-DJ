@@ -9,18 +9,41 @@
             <span>{{ employee.first_name }} {{ employee.last_name }}</span>
         </nav>
         <article class="employee-profile-card">
-            <div class="employee-profile-portrait">
-                {% if employee.profile_picture %}<img src="{{ employee.profile_picture.url }}" alt="{{ employee.first_name }} {{ employee.last_name }}">{% else %}<span>{{ employee.first_name|first|upper }}{{ employee.last_name|first|upper }}</span>{% endif %}
+            <div class="employee-profile-portrait{% if employee.profile_picture %} has-profile-picture{% endif %}">
+                {% if employee.profile_picture %}
+                    <img src="{{ employee.profile_picture.url }}" alt="{{ employee.first_name }} {{ employee.last_name }}">
+                {% else %}
+                    <span>{{ employee.first_name|first|upper }}{{ employee.last_name|first|upper }}</span>
+                {% endif %}
             </div>
             <div class="employee-profile-content">
-                <p class="eyebrow"><span></span> Meet our team member</p>
+                <p class="eyebrow">
+                    <span></span> Meet our team member</p>
                 <p class="employee-profile-position">{{ employee.position }}</p>
                 <h1>{{ employee.first_name }} <em>{{ employee.last_name }}</em></h1>
-                {% if employee.restaurant %}<a class="employee-profile-restaurant" href="/restaurants/{{ employee.restaurant.slug|default:employee.restaurant.pk }}/">{{ employee.restaurant.name }} <span>&rarr;</span></a>{% else %}<p class="employee-profile-restaurant is-unassigned">Restaurant not assigned</p>{% endif %}
+                {% if employee.restaurant %}
+                    <a class="employee-profile-restaurant" href="/restaurants/{{ employee.restaurant.slug|default:employee.restaurant.pk }}/">{{ employee.restaurant.name }}
+                        <span>&rarr;</span>
+                    </a>
+                {% else %}
+                    <p class="employee-profile-restaurant is-unassigned">Restaurant not assigned</p>
+                {% endif %}
                 <div class="employee-profile-contact"><a href="mailto:{{ employee.email }}">{{ employee.email }}</a>{% if employee.phone_number %}<span>{{ employee.phone_number }}</span>{% endif %}</div>
                 <div class="employee-profile-stats">
-                    <div><strong>{{ employee.team_reviews|length }}</strong><span>Employee reviews</span></div>
-                    <div><strong>{% if employee.avg_rating != None %}&#9733; {{ employee.avg_rating|floatformat:1 }}{% else %}&mdash;{% endif %}</strong><span>Average rating</span></div>
+                    <div>
+                        <strong>
+                            {{ employee.team_reviews|length }}
+                        </strong>
+                        <span>Employee reviews</span>
+                    </div>
+                    <div>
+                        <strong>
+                            {% if employee.avg_rating != None %}&#9733; {{ employee.avg_rating|floatformat:1 }}
+                                {% else %}&mdash;
+                            {% endif %}
+                        </strong>
+                        <span>Average rating</span>
+                    </div>
                 </div>
                 <div class="employee-profile-actions">
                     <a class="button employee-profile-edit" href="{% url 'employee-edit' pk=employee.pk %}">Edit profile <span>&rarr;</span></a>
@@ -35,12 +58,24 @@
 </section>
 <section class="section-space restaurant-reviews-section employee-profile-reviews">
     <div class="container">
-        <div class="section-heading"><div><p class="eyebrow"><span></span> Kind words</p><h2>Reviews for {{ employee.first_name }}</h2></div><span class="restaurant-reviews-count">{{ employee.team_reviews|length }} review{{ employee.team_reviews|length|pluralize }}</span></div>
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow"><span></span> Kind words</p>
+                <h2>Reviews for {{ employee.first_name }}</h2>
+            </div>
+            <span class="restaurant-reviews-count">
+                {{ employee.team_reviews|length }} review{{ employee.team_reviews|length|pluralize }}
+            </span>
+        </div>
         <div class="review-grid restaurant-review-grid employee-review-grid">
             {% for review in employee.team_reviews %}
             <article class="review-card restaurant-review-card">
                 <div class="review-rating">&#9733; {{ review.rating|floatformat:1 }}</div>
-                {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged</span>{% endif %}
+                {% if review.is_flagged %}
+                    <span class="flagged-status">
+                        <i aria-hidden="true"></i>Inappropriate language
+                    </span>
+                {% endif %}
                 <h3>{{ review.title }}</h3>
                 <p>{{ review.content|truncatechars:190 }}</p>
                 <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>

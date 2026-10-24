@@ -10,7 +10,7 @@
             <div class="review-editor-restaurant"><span>Review for</span><strong>{{ review.employee.first_name }} {{ review.employee.last_name }}</strong></div>
             <a class="review-editor-back" href="{% url 'employee-review-detail' pk=review.pk %}">&larr; Back to review</a>
         </aside>
-        <form method="post" class="review-editor-form">
+        <form method="post" novalidate class="review-editor-form">
             {% csrf_token %}{{ form.non_field_errors }}
             <div class="review-editor-form-heading"><span class="review-editor-form-icon" aria-hidden="true">&#9998;</span><div><small>REVIEW EDITOR</small><h2>Update your feedback</h2></div></div>
             <div class="review-editor-fields">

@@ -42,7 +42,7 @@
                         <a class="button button-small review-detail-button" href="{% url 'employee-review-detail' pk=review.pk %}">Read review <span>&rarr;</span></a>
                     </article>
                     {% empty %}
-                    <div class="empty-state restaurant-empty-state"><h3>No employee reviews found</h3><p>Try another search or change the review status filter.</p></div>
+                    <div class="empty-state restaurant-empty-state employee-review-empty-state">{% if has_any_employee_reviews %}<h3>No employee reviews found</h3><p>Try another search or change the review status filter.</p>{% else %}<h3>No reviews yet</h3><p>Employee reviews will appear here when guests share feedback.</p>{% endif %}</div>
                     {% endfor %}
                 </div>
                 {% if is_paginated %}

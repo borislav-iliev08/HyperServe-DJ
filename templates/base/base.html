@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=restaurant-action-space">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=employee-review-card-gap">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -39,6 +39,14 @@
     </main>
 
     {% include 'base/footer.html' %}
+<script>
+    window.addEventListener('load', function () {
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+            window.scrollTo(0, mainContent.getBoundingClientRect().top + window.scrollY);
+        }
+    });
+</script>
 </body>
 </html>
 

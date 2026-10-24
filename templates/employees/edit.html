@@ -7,15 +7,21 @@
             <p class="review-editor-kicker"><span></span> Team directory</p>
             <h1>Update <em>the details.</em></h1>
             <p>Keep this team member’s profile current for guests and colleagues.</p>
-            {% if employee.restaurant %}<div class="review-editor-restaurant"><span>Restaurant</span><strong>{{ employee.restaurant.name }}</strong></div>{% endif %}
+            {% if employee.restaurant %}
+                <div class="review-editor-restaurant">
+                    <span>Restaurant</span>
+                    <strong>{{ employee.restaurant.name }}</strong>
+                </div>
+            {% endif %}
             <a class="review-editor-back" href="{% url 'employee-detail' pk=employee.pk %}">&larr; Back to profile</a>
         </aside>
-        <form method="post" enctype="multipart/form-data" class="review-editor-form">
-            {% csrf_token %}{{ form.non_field_errors }}
+        <form method="post" novalidate enctype="multipart/form-data" class="review-editor-form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
             <div class="review-editor-form-heading"><span class="review-editor-form-icon" aria-hidden="true">&#9998;</span><div><small>PROFILE EDITOR</small><h2>{{ employee.first_name }} {{ employee.last_name }}</h2></div></div>
             <div class="review-editor-fields">
                 {% for field in form %}
-                <div class="review-editor-field{% if field.name == 'profile_picture' %} review-editor-field-wide{% endif %}">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}{{ field.errors }}</div>
+                <div class="review-editor-field{% if field.name == 'profile_picture' %} review-editor-field-wide employee-edit-photo-field{% endif %}">{% if field.name == 'profile_picture' and employee.profile_picture %}<div class="employee-edit-photo-preview"><img src="{{ employee.profile_picture.url }}" alt="Current photo of {{ employee.first_name }} {{ employee.last_name }}"><div><span>Current profile photo</span><strong>{{ employee.first_name }} {{ employee.last_name }}</strong><small>Choose a new image below to replace it.</small></div></div>{% endif %}{{ field.label_tag }}{{ field }}{% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}{{ field.errors }}</div>
                 {% endfor %}
             </div>
             <div class="review-editor-actions"><a class="button button-light" href="{% url 'employee-detail' pk=employee.pk %}">Cancel</a><button class="button review-editor-save" type="submit">Save changes <span>&rarr;</span></button></div>

@@ -33,7 +33,7 @@
                 {{ forloop.counter|stringformat:"02d" }}</span>
                 <div class="home-rank-copy">
                     <h3>
-                        <a href="{{ restaurant.detail_url }}">{{ restaurant.name }}</a>
+                        <a href="{% url 'restaurant-detail' slug=restaurant.slug|default:restaurant.pk %}">{{ restaurant.name }}</a>
                     </h3><p>{{ restaurant.cuisine_type }}</p>
                 </div><span class="home-score">★ {{ restaurant.avg_rating|floatformat:1|default:"—" }}</span>
             </article>

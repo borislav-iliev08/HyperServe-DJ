@@ -54,7 +54,7 @@ button, input, textarea, select {
 }
 
 .site-header {
-    position: sticky;
+    position: relative;
     z-index: 10;
     top: 0;
     width: 100vw;
@@ -409,9 +409,9 @@ label {
 }
 
 .site-footer {
-    padding-top: 38px;
+    padding-top: 46px;
     background: var(--green-dark);
-    color: #f5f2e9;
+    color: var(--cream);
     width: 100vw;
     margin-left: -260px;
     padding-left: 260px;
@@ -420,46 +420,27 @@ label {
 }
 
 .footer-main {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding-bottom: 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(130px, .7fr) minmax(150px, .8fr);
+    gap: clamp(28px, 5vw, 72px);
+    padding-bottom: 38px;
 }
 
-.brand-footer .brand-mark {
-    border-color: #c2c9b9;
-    color: #f5f2e9;
-}
-
-.brand-footer .brand-copy small {
-    color: #b9c0b3;
-}
-
-.footer-main > p {
-    color: #c7cdbf;
-    font: italic 14px var(--serif);
-}
-
-.footer-top {
-    color: #d0c5b1;
-    font-size: 11px;
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
-    border-top: 1px solid #ffffff24;
-    color: #bbc1b5;
-    font-size: 10px;
-}
+.footer-company .brand { margin-bottom: 17px; }
+.brand-footer .brand-mark { border-color: #c2c9b9; color: var(--cream); }
+.brand-footer .brand-copy small { color: #c2c9b9; }
+.footer-company > p { max-width: 470px; margin: 0; color: #d5d8cc; font-size: 13px; line-height: 1.8; }
+.footer-navigation, .footer-social { display: grid; align-content: start; gap: 10px; }
+.footer-navigation h2, .footer-social h2 { margin: 3px 0 8px; color: var(--cream); font: 600 15px var(--serif); }
+.footer-navigation a, .footer-social a { width: fit-content; color: #d5d8cc; font-size: 12px; text-decoration: none; transition: color .18s ease, transform .18s ease; }
+.footer-navigation a:hover, .footer-social a:hover { transform: translateX(3px); color: #fff; }
+.footer-social a span { margin-left: 4px; color: #c6b99e; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 0; border-top: 1px solid #ffffff24; color: #c2c9b9; font-size: 10px; }
+.footer-top { color: #e0d5c0; font-size: 11px; text-decoration: none; }
+.footer-top:hover { color: #fff; }
 
 @media (max-width: 992px) {
-    body {
-        padding-left: 0;
-    }
-
+    body { padding-left: 0; }
     .sidebar {
         position: relative !important;
         top: auto !important;
@@ -468,43 +449,17 @@ label {
         width: 100%;
         margin-bottom: 20px;
     }
-    .site-header {
-        width: 100%;
-        margin-left: 0;
-        padding-left: 0;
-    }
-
-    .site-footer {
-        width: 100%;
-        margin-left: 0;
-        padding-left: 0;
-    }
-
-    .card-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    .site-header { width: 100%; margin-left: 0; padding-left: 0; }
+    .site-footer { width: 100%; margin-left: 0; padding-left: 0; }
+    .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {
-    .header-inner {
-        min-height: 70px;
-    }
-
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-main {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 4px;
-    }
+    .header-inner { min-height: 70px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .footer-main { align-items: flex-start; }
+    .footer-bottom { gap: 4px; }
 }
-
 .error-404 {
     --e404-cream: #f7f5ef;
     --e404-paper: #fffefa;
@@ -970,8 +925,8 @@ label {
 .restaurant-detail-actions .button { min-height: 46px; border-radius: 5px; }
 .restaurant-detail-actions .button-danger { background: #a94747; color: #fff; }
 .restaurant-detail-actions .button-danger:hover { background: #873737; }
-.restaurant-delete-actions { display: flex; align-items: center; gap: 12px; }
-.restaurant-delete-cancel { margin-left: auto; }
+.restaurant-delete-actions { display: flex; align-items: center; justify-content: center; gap: 32px; }
+.restaurant-delete-cancel { margin-left: 0; }
 
 .restaurant-delete-page { position: relative; display: grid; min-height: 72vh; place-items: center; overflow: hidden; padding: 72px 24px; background: radial-gradient(ellipse at 50% 0%, #e5edf5 0, #f5f7f9 48%, #f7f5ef 100%); }
 .restaurant-delete-container { display: grid; max-width: 780px; place-items: center; }
@@ -990,7 +945,7 @@ label {
 .restaurant-delete-actions .button-danger:hover { background: #873737; }
 .restaurant-delete-back { display: inline-block; margin-top: 23px; color: #617487; font-size: 12px; font-weight: 600; }
 .restaurant-delete-back:hover { color: #294563; }
-@media (max-width: 560px) { .restaurant-delete-page { min-height: 0; padding: 42px 16px; }.restaurant-delete-card { padding: 30px 20px; }.restaurant-delete-actions { align-items: stretch; flex-direction: column; }.restaurant-delete-actions .button { width: 100%; }.restaurant-delete-warning { margin-bottom: 22px; } }
+@media (max-width: 560px) { .restaurant-delete-page { min-height: 0; padding: 42px 16px; }.restaurant-delete-card { padding: 30px 20px; }.restaurant-delete-actions { align-items: stretch; flex-direction: column; gap: 18px; }.restaurant-delete-actions .button { width: 100%; }.restaurant-delete-warning { margin-bottom: 22px; } }
 
 .restaurant-working-employees { margin-top: 36px; }
 .restaurant-team-heading { margin-bottom: 16px; }
@@ -1502,3 +1457,20 @@ body:has(.restaurant-detail-banner) { background-color: #eaf0f4; background-imag
 .perk-create-page .restaurant-edit-actions { justify-content: center; }
 /* Space the restaurant detail actions */
 .restaurant-profile-summary > .restaurant-add-employee + .button { margin-top: 12px; }
+
+.employee-profile-portrait.has-profile-picture::before, .employee-profile-portrait.has-profile-picture::after { display: none; }
+.employee-edit-photo-preview { display: flex; align-items: center; gap: 18px; margin-bottom: 17px; padding: 15px; border: 1px solid #d7e3eb; border-radius: 16px; background: linear-gradient(135deg, #f7fafc, #e9f1f6); box-shadow: 0 6px 18px #203e5c0c; }
+.employee-edit-photo-preview img { width: 104px; height: 104px; flex: 0 0 104px; border: 3px solid #fff; border-radius: 14px; object-fit: cover; box-shadow: 0 5px 15px #203e5c24; }
+.employee-edit-photo-preview div { display: grid; gap: 5px; }
+.employee-edit-photo-preview span { color: #5f7e96; font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.employee-edit-photo-preview strong { color: #203e5c; font: 600 20px/1.25 var(--serif); }
+.employee-edit-photo-preview small { color: #71808d; font-size: 11px; }
+.employee-edit-photo-field input[type=file] { width: 100%; padding: 11px; border: 1px dashed #9fb6c9; border-radius: 12px; background: linear-gradient(135deg, #f5f9fb, #eaf1f6); color: #637483; cursor: pointer; }
+.employee-edit-photo-field input[type=file]::file-selector-button { min-height: 38px; margin-right: 12px; padding: 0 14px; border: 1px solid #294563; border-radius: 9px; background: linear-gradient(135deg, #4d7da7, #294563); color: #fff; font-weight: 700; cursor: pointer; }
+@media (max-width: 520px) { .employee-edit-photo-preview { gap: 13px; padding: 12px; }.employee-edit-photo-preview img { width: 82px; height: 82px; flex-basis: 82px; }.employee-edit-photo-preview strong { font-size: 17px; } }.employee-review-empty-state { display: block; grid-column: 1 / -1; width: 100%; padding: 36px 24px; border: 1px dashed #b8cbd9; border-radius: 16px; background: linear-gradient(145deg, #f7fafc, #edf3f7); text-align: center; }
+.employee-review-empty-state h3 { margin: 0 0 8px; color: #294563; font: 600 22px/1.25 var(--serif); }
+.employee-review-empty-state p { margin: 0; color: #71808d; font-size: 13px; }
+@media (max-width: 760px) { .footer-main { grid-template-columns: 1fr 1fr; gap: 28px; }.footer-company { grid-column: 1 / -1; }.footer-bottom { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 480px) { .site-footer { padding-top: 36px; }.footer-main { grid-template-columns: 1fr; }.footer-company { grid-column: auto; }.footer-navigation, .footer-social { gap: 8px; } }
+
+.employee-review-grid .employee-review-target + .review-detail-button { margin-top: 24px; }

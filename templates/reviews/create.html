@@ -16,7 +16,7 @@
             <a class="review-editor-back" href="{% if restaurant %}/restaurants/{{ restaurant.slug|default:restaurant.pk }}/{% else %}{% url 'reviews-list' %}{% endif %}">&larr; Back</a>
         </aside>
 
-        <form method="post" class="review-editor-form" action="{% url 'review-create' %}{% if restaurant %}?restaurant={{ restaurant.pk }}{% endif %}">
+        <form method="post" novalidate class="review-editor-form" action="{% url 'review-create' %}{% if restaurant %}?restaurant={{ restaurant.pk }}{% endif %}">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="review-editor-form-heading">

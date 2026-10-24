@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from restaurants.models import Restaurant
-from restaurants.views import RestaurantDetailView
 from reviews.models import Review
 
 
@@ -22,8 +21,6 @@ class HomeView(TemplateView):
         top_restaurants = Restaurant.objects.annotate(
             avg_rating=Avg('restaurant_reviews__rating')
         ).filter(avg_rating__isnull=False).order_by('-avg_rating')[:5]
-        for restaurant in top_restaurants:
-            restaurant.detail_url = RestaurantDetailView.get_absolute_url(restaurant)
 
         latest_reviews = Review.objects.select_related('restaurant').order_by('-created_at')[:5]
         top_chefs = Employee.objects.filter(position=Employee.PositionChoices.CH).annotate(

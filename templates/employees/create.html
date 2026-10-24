@@ -7,17 +7,24 @@
             <p class="review-editor-kicker"><span></span> Growing the team</p>
             <h1>Introduce a <em>new face.</em></h1>
             <p>Add a profile for the person who makes every guest feel welcome.</p>
-            {% if restaurant %}<div class="review-editor-restaurant"><span>Adding to restaurant</span><strong>{{ restaurant.name }}</strong></div>{% endif %}
+            {% if restaurant %}
+                <div class="review-editor-restaurant">
+                    <span>Adding to restaurant</span>
+                <strong>{{ restaurant.name }}</strong>
+            </div>
+            {% endif %}
             <a class="review-editor-back" href="{% if restaurant %}/restaurants/{{ restaurant.slug|default:restaurant.pk }}/{% else %}{% url 'employees-list' %}{% endif %}">&larr; Back</a>
         </aside>
-        <form method="post" enctype="multipart/form-data" class="review-editor-form" action="{% url 'employee-create' %}{% if restaurant %}?restaurant={{ restaurant.pk }}{% endif %}">
+        <form method="post" novalidate enctype="multipart/form-data" class="review-editor-form" action="{% url 'employee-create' %}{% if restaurant %}?restaurant={{ restaurant.pk }}{% endif %}">
             {% csrf_token %}{{ form.non_field_errors }}
             <div class="review-editor-form-heading"><span class="review-editor-form-icon" aria-hidden="true">&#10024;</span><div><small>TEAM DIRECTORY</small><h2>Employee profile</h2></div></div>
             <div class="review-editor-fields">
                 {% for field in form %}
                 <div class="review-editor-field{% if field.name == 'profile_picture' %} review-editor-field-wide{% endif %}">
                     {{ field.label_tag }}{{ field }}
-                    {% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}
+                    {% if field.help_text %}
+                        <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
                     {{ field.errors }}
                 </div>
                 {% endfor %}

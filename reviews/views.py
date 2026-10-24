@@ -1,13 +1,13 @@
-
 from django.db.models import Q
 from django.urls import reverse_lazy
-from django.views.generic import DeleteView, DetailView, ListView, CreateView, UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from employees.forms import EmployeeCreateForm, EmployeeDeleteForm, EmployeeEditForm
+from employees.models import Employee
+from restaurants.models import Restaurant
 from reviews.forms import ReviewCreateForm, ReviewEditForm
 from reviews.models import Review
-from restaurants.models import Restaurant
 
 
-# Create your views here.
 class ReviewListView(ListView):
     model = Review
     context_object_name = 'reviews'
@@ -21,7 +21,9 @@ class ReviewListView(ListView):
         query = super().get_queryset().select_related('restaurant')
         search_query = self.request.GET.get('q', '')
         if search_query:
-            query = query.filter(Q(title__icontains=search_query)| Q(restaurant__name__icontains= search_query))
+            query = query.filter(
+                Q(title__icontains=search_query) | Q(restaurant__name__icontains=search_query)
+            )
 
         flagged = self.request.GET.get('flagged', '')
         if flagged == 'flagged':
@@ -34,18 +36,10 @@ class ReviewListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'search_query': self.request.GET.get('q', '').strip(),
+            'search_query': self.request.GET.get('q', ''),
             'selected_flagged': self.request.GET.get('flagged', ''),
         })
         return context
-    
-
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-
-from employees.forms import EmployeeEditForm, EmployeeDeleteForm, EmployeeCreateForm
-from employees.models import Employee
-
-
 
 
 class ReviewDetailView(DetailView):
@@ -60,14 +54,17 @@ class ReviewDeleteView(DeleteView):
     model = Review
     context_object_name = 'review'
     success_url = reverse_lazy('reviews-list')
+
     def get_template_names(self):
         return ['reviews/delete.html']
+
 
 class ReviewCreateView(CreateView):
     model = Review
     form_class = ReviewCreateForm
     context_object_name = 'review'
     success_url = reverse_lazy('reviews-list')
+
     def get_template_names(self):
         return ['reviews/create.html']
 
@@ -86,18 +83,17 @@ class ReviewCreateView(CreateView):
         form.instance.restaurant = self.get_selected_restaurant()
         return super().form_valid(form)
 
+
 class ReviewEditView(UpdateView):
     model = Review
     form_class = ReviewEditForm
     context_object_name = 'review'
     success_url = reverse_lazy('reviews-list')
+
     def get_template_names(self):
         return ['reviews/edit.html']
 
 
-
-
-# Create your views here.
 class EmployeesReviewsListView(ListView):
     model = Employee
     context_object_name = 'employee'
@@ -118,10 +114,10 @@ class EmployeesReviewsListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'search_query': self.request.GET.get('q', '').strip(),
+            'search_query': self.request.GET.get('q', '')
         })
-
         return context
+
 
 class EmployeesReviewsDetailsView(DetailView):
     model = Employee
@@ -129,6 +125,7 @@ class EmployeesReviewsDetailsView(DetailView):
 
     def get_template_names(self):
         return ['reviews/employee_review_details.html']
+
 
 class EmployeesReviewsCreateView(CreateView):
     model = Employee
@@ -138,6 +135,7 @@ class EmployeesReviewsCreateView(CreateView):
     def get_template_names(self):
         return ['reviews/employee_review_create.html']
 
+
 class EmployeesReviewsDeleteView(DeleteView):
     model = Employee
     form_class = EmployeeDeleteForm
@@ -146,9 +144,11 @@ class EmployeesReviewsDeleteView(DeleteView):
     def get_template_names(self):
         return ['reviews/emoployee_review_delete.html']
 
+
 class EmployeesReviewsEditView(UpdateView):
     model = Employee
     form_class = EmployeeEditForm
     context_object_name = 'employee'
+
     def get_template_names(self):
         return ['reviews/employee_review_edit.html']

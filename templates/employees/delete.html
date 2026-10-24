@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+﻿{% extends 'base/base.html' %}
 {% block title %}Remove employee | HyperServe{% endblock %}
 {% block content %}
 <section class="restaurant-delete-page">
@@ -8,10 +8,16 @@
             <p class="restaurant-delete-eyebrow">Team directory</p>
             <h1>Remove <span>{{ employee.first_name }} {{ employee.last_name }}</span>?</h1>
             <p class="restaurant-delete-copy">This employee profile will be removed from the team directory.</p>
-            <div class="restaurant-delete-warning"><span aria-hidden="true">i</span><p>Removing this profile is permanent. Employee reviews will also be removed.</p></div>
+            <div class="restaurant-delete-warning">
+                <span aria-hidden="true">i</span><p>Removing this profile is permanent. Employee reviews will also be removed.</p>
+            </div>
             <form method="post" class="restaurant-delete-form">
-                {% csrf_token %}{{ form.non_field_errors }}
-                <div class="restaurant-delete-actions"><button class="button button-danger" type="submit">Remove employee</button><a class="button button-light restaurant-delete-cancel" href="{% url 'employee-detail' pk=employee.pk %}">Keep employee</a></div>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="restaurant-delete-actions">
+                    <button class="button button-danger" type="submit">Remove employee</button>
+                    <a class="button button-light restaurant-delete-cancel" href="{% url 'employee-detail' pk=employee.pk %}">Keep employee</a>
+                </div>
             </form>
             <a class="restaurant-delete-back" href="{% url 'employees-list' %}">&larr; Back to employees</a>
         </article>

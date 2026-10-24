@@ -9,7 +9,7 @@ from .models import Employee
 class EmployeeBaseForm(forms.ModelForm):
     class Meta:
         model = Employee
-        exclude =['restaurant','rating']
+        exclude = ['restaurant']
         widgets ={
             'first_name':forms.TextInput(attrs={
                 'class':'form-control',
@@ -72,8 +72,14 @@ class EmployeeCreateForm(EmployeeBaseForm):
     ...
 
 class EmployeeEditForm(EmployeeBaseForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['profile_picture'].widget = forms.FileInput(attrs={
+            'class': 'form-control employee-photo-input',
+            'accept': 'image/*',
+        })
     class Meta(EmployeeBaseForm.Meta):
-        exclude = ['restaurant','rating']
+        exclude = ['restaurant']
 
 class EmployeeDeleteForm(DisabledFormMixin,EmployeeBaseForm):
     ...

@@ -10,7 +10,7 @@
             <p>Share your restaurant details, photo, and guest amenities.</p>
         </header>
 
-        <form method="post" enctype="multipart/form-data" class="restaurant-edit-form">
+        <form method="post" novalidate enctype="multipart/form-data" class="restaurant-edit-form">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="restaurant-edit-fields">

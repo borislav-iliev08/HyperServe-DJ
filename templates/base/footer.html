@@ -1,18 +1,35 @@
 <footer class="site-footer">
-        <div class="container footer-main">
-            <a class="brand brand-footer" href="/">
+    <div class="container footer-main">
+        <section class="footer-company" aria-labelledby="footer-company-name">
+            <a class="brand brand-footer" href="/" aria-label="HyperServe home">
                 <span class="brand-mark">H<span>&amp;</span>S</span>
                 <span class="brand-copy">
-                    <strong>HyperServe</strong>
-                    <small><span aria-hidden="true">&#10022;</span> DINING &middot; HOSPITALITY</small>
+                    <strong id="footer-company-name">HyperServe</strong>
+                    <small><span aria-hidden="true">&#10022;</span> DJ / SOLUTIONS</small>
                 </span>
             </a>
-            <p>Quality food. Excellent service. Seamless management.</p>
-            <a class="footer-top" href="#main-content">Back to top ↑</a>
-        </div>
+            <p>HyperServe is the premier global platform uniting restaurants, culinary teams, and diners worldwide. We provide a centralized digital ecosystem where food lovers discover top-rated dining spots, explore expert reviews, and connect with the passionate professionals behind every exceptional meal.</p>
+        </section>
 
-        <div class="container footer-bottom">
-            <span>© {% now "Y" %} HyperServe</span>
-            <span>Hospitality, thoughtfully served.</span>
-        </div>
-    </footer>
+        <nav class="footer-navigation" aria-label="Footer navigation">
+            <h2>Explore</h2>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'restaurants-list' %}">Restaurants</a>
+            <a href="{% url 'employees-list' %}">Employees</a>
+            <a href="{% url 'reviews-list' %}">Restaurants Reviews</a>
+            <a href="{% url 'employee-reviews-list' %}">Employees Reviews</a>
+        </nav>
+
+        <section class="footer-social" aria-labelledby="footer-social-heading">
+            <h2 id="footer-social-heading">Connect</h2>
+            <a href="https://www.instagram.com/b_.iliew._?xtok=MWszZHR0OGxkOTMwNQ==" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://www.facebook.com/share/1FChyJ1qt9/" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://github.com/borislav-iliev08" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&#8599;</span></a>
+        </section>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>&copy; 2026 HyperServe / Borislav Iliev. All rights reserved.</span>
+        <a class="footer-top" href="#main-content">Back to main content &uarr;</a>
+    </div>
+</footer>

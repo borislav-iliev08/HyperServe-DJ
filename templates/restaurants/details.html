@@ -87,7 +87,7 @@
             {% for review in reviews %}
             <article class="review-card restaurant-review-card">
                 <div class="review-rating">&#9733; {{ review.rating|floatformat:1 }}</div>
-                {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged</span>{% endif %}
+                {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Inappropriate language</span>{% endif %}
                 <h3>{{ review.title }}</h3>
                 <p>{{ review.content }}</p>
                 <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>

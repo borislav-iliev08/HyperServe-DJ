@@ -81,8 +81,8 @@ class RestaurantBaseForm(forms.ModelForm):
 
     def clean_description(self):
         description = self.cleaned_data.get('description') or ''
-        if len(description.strip()) < 20:
-            raise ValidationError('Description must be with at least 20 characters!')
+        if description.strip() and len(description.strip()) < 20:
+            raise ValidationError('Description must be at least 20 characters long, or left blank.')
         return description
 
 
@@ -99,7 +99,7 @@ class RestaurantDeleteForm(DisabledFormMixin,RestaurantBaseForm):
 
 class RestaurantEditForm(RestaurantBaseForm):
     class Meta(RestaurantBaseForm.Meta):
-        exclude = ['slug','owner']
+        exclude = ['slug']
 
 
 

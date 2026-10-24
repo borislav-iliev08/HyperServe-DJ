@@ -9,7 +9,7 @@
             <h1>Add a <em>perk</em></h1>
             <p>Create an amenity that can be added to restaurant profiles.</p>
         </header>
-        <form method="post" class="restaurant-edit-form">
+        <form method="post" novalidate class="restaurant-edit-form">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div class="restaurant-edit-fields">

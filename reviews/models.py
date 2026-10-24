@@ -24,11 +24,10 @@ class EmployeeReview(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    rating = models.DecimalField(max_digits=4,decimal_places=2)
+    rating = models.DecimalField(max_digits=4,decimal_places=2,blank=True,null=True)
     author = models.CharField(max_length=50)
     is_flagged = models.BooleanField(default=False,editable=False)
 
     class Meta:
-        db_table = 'employees_employeereview'
         verbose_name = "Employee Review"
         verbose_name_plural = "Employee Reviews"
