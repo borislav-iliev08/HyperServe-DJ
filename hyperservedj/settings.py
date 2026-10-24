@@ -61,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = os.getenv('ROOT_URLCONF')
+ROOT_URLCONF = 'hyperservedj.urls'
 
 TEMPLATES = [
     {
@@ -136,7 +136,7 @@ STATICFILES_DIRS=[
 ]
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

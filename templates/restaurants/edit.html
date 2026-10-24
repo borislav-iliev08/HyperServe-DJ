@@ -2,7 +2,7 @@
 {% block content %}
 <section class="restaurant-edit-page">
     <div class="container restaurant-edit-container">
-        <a class="restaurant-edit-back" href="{{ form.instance.get_absolute_url }}">&larr; Back to restaurant</a>
+        <a class="restaurant-edit-back" href="{{ restaurant_url }}">&larr; Back to restaurant</a>
         <header class="restaurant-edit-heading">
             <p class="eyebrow"><span></span> Restaurant profile</p>
             <h1>Edit <em>{{ form.instance.name }}</em></h1>
@@ -30,7 +30,7 @@
             </div>
             <div class="restaurant-edit-actions">
                 <button class="button" type="submit">Save changes <span aria-hidden="true">&rarr;</span></button>
-                <a class="restaurant-edit-cancel" href="{{ form.instance.get_absolute_url }}">Cancel</a>
+                <a class="restaurant-edit-cancel" href="{{ restaurant_url }}">Cancel</a>
             </div>
         </form>
     </div>

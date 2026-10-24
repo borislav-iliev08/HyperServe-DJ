@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% block title %}Delete team review | HyperServe{% endblock %}
+{% block content %}
+<section class="restaurant-delete-page">
+    <div class="container restaurant-delete-container">
+        <article class="restaurant-delete-card">
+            <div class="restaurant-delete-icon" aria-hidden="true">!</div>
+            <p class="restaurant-delete-eyebrow">Team review</p>
+            <h1>Delete <span>{{ review.title }}</span>?</h1>
+            <p class="restaurant-delete-copy">This review for {{ review.employee.first_name }} {{ review.employee.last_name }} will be removed.</p>
+            <div class="restaurant-delete-warning"><span aria-hidden="true">i</span><p>Deleting this review is permanent and cannot be undone.</p></div>
+            <form method="post" class="restaurant-delete-form">
+                {% csrf_token %}{{ form.non_field_errors }}
+                <div class="restaurant-delete-actions"><button class="button button-danger" type="submit">Delete review</button><a class="button button-light restaurant-delete-cancel" href="{% url 'employee-review-detail' pk=review.pk %}">Keep review</a></div>
+            </form>
+            <a class="restaurant-delete-back" href="{% url 'employee-reviews-list' %}">&larr; Back to employee reviews</a>
+        </article>
+    </div>
+</section>
+{% endblock %}

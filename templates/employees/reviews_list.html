@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% block title %}Employee reviews | HyperServe{% endblock %}
+{% block content %}
+<section class="page-hero restaurants-hero">
+    <div class="container">
+        <div class="restaurants-hero-title-row"><h1>Stories behind <em>the service.</em></h1><span class="restaurants-world-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 9h32v23H21L11 39v-7H8z"></path><path d="m24 14 2.8 5.6 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2-4.5-4.4 6.2-.9z"></path></svg></span></div>
+        <p class="hero-description">Read the notes guests leave for the people who make their experience special.</p>
+    </div>
+</section>
+<section class="section-space restaurants-directory restaurant-reviews-section">
+    <div class="container">
+        <form class="restaurant-search-panel" method="get" action="">
+            <div class="restaurant-search-row">
+                <label class="restaurant-search-field" for="employee-review-search"><span class="restaurant-search-icon" aria-hidden="true"></span><span class="visually-hidden">Search employee reviews</span><input id="employee-review-search" type="search" name="q" value="{{ search_query }}" placeholder="Search reviews or team members"></label>
+                <button class="button restaurant-search-button" type="submit">Search</button>
+            </div>
+        </form>
+        <div class="restaurant-results-layout">
+            <form class="restaurant-filter-panel" method="get" action="" aria-label="Employee review filters">
+                <input type="hidden" name="q" value="{{ search_query }}">
+                <h2>Filters</h2>
+                <label class="restaurant-filter-dropdown" for="employee-review-status">Review status</label>
+                <select id="employee-review-status" class="form-select" name="flagged">
+                    <option value="" {% if not selected_flagged %}selected{% endif %}>All reviews</option>
+                    <option value="normal" {% if selected_flagged == 'normal' %}selected{% endif %}>Appropriate reviews</option>
+                    <option value="flagged" {% if selected_flagged == 'flagged' %}selected{% endif %}>Inappropriate reviews</option>
+                </select>
+                <button class="button perk-apply-button" type="submit">Apply filters</button>
+                <a class="restaurant-clear-button" href="{% url 'employee-reviews-list' %}">Clear filters</a>
+            </form>
+            <div class="restaurant-results">
+                <p class="restaurant-result-count">{{ page_obj.paginator.count }} employee review{{ page_obj.paginator.count|pluralize }}</p>
+                <div class="review-grid restaurant-review-grid employee-review-grid">
+                    {% for review in employee_reviews %}
+                    <article class="review-card restaurant-review-card">
+                        <div class="review-rating">&#9733; {{ review.rating|floatformat:1 }}</div>
+                        {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged</span>{% endif %}
+                        <h3>{{ review.title }}</h3>
+                        <p>{{ review.content|truncatechars:180 }}</p>
+                        <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>
+                        <a class="employee-review-target" href="{% url 'employee-detail' pk=review.employee.pk %}"><span>For</span><strong>{{ review.employee.first_name }} {{ review.employee.last_name }}</strong><i aria-hidden="true">&rarr;</i></a>
+                        <a class="button button-small review-detail-button" href="{% url 'employee-review-detail' pk=review.pk %}">Read review <span>&rarr;</span></a>
+                    </article>
+                    {% empty %}
+                    <div class="empty-state restaurant-empty-state"><h3>No employee reviews found</h3><p>Try another search or change the review status filter.</p></div>
+                    {% endfor %}
+                </div>
+                {% if is_paginated %}
+                <nav class="restaurant-pagination" aria-label="Employee review pages">
+                    {% if page_obj.has_previous %}<a href="{% querystring page=page_obj.previous_page_number %}">&larr; Previous</a>{% else %}<span class="is-disabled">&larr; Previous</span>{% endif %}
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_next %}<a href="{% querystring page=page_obj.next_page_number %}">Next &rarr;</a>{% else %}<span class="is-disabled">Next &rarr;</span>{% endif %}
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

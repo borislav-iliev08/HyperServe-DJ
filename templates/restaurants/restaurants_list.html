@@ -50,11 +50,11 @@
                         {% endif %}
                         <div class="card-body">
                             <div class="restaurant-card-meta"><span class="card-kicker">{{ restaurant.cuisine_type }}</span><span class="restaurant-rating">{% if restaurant.avg_rating != None %}<b>&#9733;</b> {{ restaurant.avg_rating|floatformat:1 }}{% else %}<span class="rating-unavailable">No ratings</span>{% endif %}</span></div>
-                            <h2><a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a></h2>
+                            <h2><a href="{{ restaurant.detail_url }}">{{ restaurant.name }}</a></h2>
                             <p class="restaurant-description">{{ restaurant.description|default:"A local dining destination ready to welcome you."|truncatechars:125 }}</p>
                             {% if restaurant.perks.all %}<div class="restaurant-perk-tags">{% for perk in restaurant.perks.all %}<span>{{ perk.name }}</span>{% endfor %}</div>{% endif %}
                             <p class="restaurant-address">{{ restaurant.address }}</p>
-                            <a class="text-link restaurant-discover-link" href="{{ restaurant.get_absolute_url }}">View details <span>&rarr;</span></a>
+                            <a class="text-link restaurant-discover-link" href="{{ restaurant.detail_url }}">View details <span>&rarr;</span></a>
                         </div>
                     </article>
                     {% empty %}

@@ -33,7 +33,7 @@
                 {{ forloop.counter|stringformat:"02d" }}</span>
                 <div class="home-rank-copy">
                     <h3>
-                        <a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
+                        <a href="{{ restaurant.detail_url }}">{{ restaurant.name }}</a>
                     </h3><p>{{ restaurant.cuisine_type }}</p>
                 </div><span class="home-score">★ {{ restaurant.avg_rating|floatformat:1|default:"—" }}</span>
             </article>
@@ -87,7 +87,7 @@
                 </div>
                 {% if review.is_flagged %}
                     <span class="flagged-status">
-                        <i aria-hidden="true"></i>Flagged</span>
+                        <i aria-hidden="true"></i>inappropriate language</span>
                 {% endif %}
                 <h3>
                     <a href="/reviews/{{ review.pk }}/">{{ review.title }}</a></h3>

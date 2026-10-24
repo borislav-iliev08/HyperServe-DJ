@@ -1321,3 +1321,184 @@ body:has(.restaurant-detail-banner) { background-color: #eaf0f4; background-imag
 .restaurants-world-mark svg { width: 52px; height: 52px; stroke: #294563; stroke-width: 1.5; }
 .restaurants-hero .hero-description { max-width: 600px; margin: 22px 0 0; color: #5d7181; font-size: clamp(15px, 1.5vw, 17px); line-height: 1.75; }
 @media (max-width: 600px) { .restaurants-hero { padding-block: 34px; }.restaurants-hero > .container { padding: 23px 20px; border-radius: 20px; }.restaurants-hero-title-row { align-items: flex-start; gap: 13px; }.restaurants-hero-title-row h1 { font-size: clamp(39px, 11vw, 54px); }.restaurants-world-mark { width: 52px; height: 52px; flex-basis: 52px; border-radius: 17px; }.restaurants-world-mark svg { width: 36px; height: 36px; }.restaurants-hero .hero-description { margin-top: 16px; }.restaurants-hero::after { right: -260px; } }
+/* Shared review-card detail action */
+.review-detail-button { position: relative; display: inline-flex; min-height: 46px; align-self: flex-start; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; padding: 0 18px; border: 1px solid #67c7eb6b; border-radius: 14px; background: linear-gradient(135deg, #122c45, #174f75 72%, #176784); box-shadow: 0 7px 18px #082d4b38, inset 0 1px #ffffff24; color: #f5fbff; font-size: 12px; font-weight: 650; letter-spacing: .015em; text-decoration: none; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+.review-detail-button::before { position: absolute; top: -1px; left: 16px; display: block; width: 30px; height: 2px; border-radius: 0 0 3px 3px; background: #78e2ff; box-shadow: 0 0 10px #58d9ffb0; content: ''; }
+.review-detail-button:hover { transform: translateY(-3px); border-color: #82e4ff; background: linear-gradient(135deg, #153a5c, #176493 72%, #1684a0); box-shadow: 0 10px 24px #087ab24a, 0 0 0 3px #59d5ff1b, inset 0 1px #ffffff35; color: #fff; }
+.review-detail-button:focus-visible { outline: 3px solid #bd694b; outline-offset: 3px; }
+.review-detail-button span { display: inline-grid; width: 25px; height: 25px; place-items: center; border: 1px solid #8be7ff68; border-radius: 50%; background: linear-gradient(145deg, #58c9ed, #2484b6); box-shadow: 0 2px 8px #071e334a, inset 0 1px #ffffff55; color: #102c44; font-size: 14px; transition: transform .2s ease, box-shadow .2s ease; }
+.review-detail-button:hover span { transform: translateX(3px) rotate(-35deg); box-shadow: 0 0 12px #65ddff88; }
+/* Keep review-card actions aligned and horizontal */
+.restaurant-review-card { display: flex; flex-direction: column; }
+.restaurant-review-card > p { flex: 1 0 auto; }
+.restaurant-review-card .review-detail-button { align-self: flex-start; flex: 0 0 auto; flex-wrap: nowrap; width: max-content; max-width: 100%; margin-top: auto; white-space: nowrap; }
+.restaurant-review-card .review-detail-button span { flex: 0 0 25px; }
+/* Matched restaurant and review actions */
+.review-card-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 12px; width: 100%; margin-top: auto; }
+.review-card-actions .review-detail-button { width: 100%; min-width: 0; max-width: none; min-height: 46px; align-self: stretch; justify-content: space-between; gap: 6px; margin: 0; padding-inline: 12px; overflow: hidden; white-space: nowrap; }
+.review-card-actions .review-detail-button:first-child:not(:last-child) { justify-self: stretch; }
+.review-card-actions .review-detail-button span { flex: 0 0 25px; }
+/* Guest review detail page */
+.review-detail-page { position: relative; isolation: isolate; min-height: calc(100vh - 180px); overflow: hidden; padding: clamp(34px, 6vw, 72px) 0 90px; background: linear-gradient(145deg, #e8f0f5 0%, #f5f6f3 52%, #f2e9e0 100%); }
+.review-detail-page::before { position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 8% 18%, #6ba5d135, transparent 33%), radial-gradient(ellipse at 93% 77%, #c8795630, transparent 30%), repeating-linear-gradient(135deg, transparent 0 42px, #29456308 43px 44px); content: ''; pointer-events: none; }
+.review-detail-container { max-width: 920px; }
+.review-detail-breadcrumb { display: flex; align-items: center; gap: 11px; margin-bottom: 22px; color: #728394; font-size: 12px; }
+.review-detail-breadcrumb a { color: #356b98; font-weight: 700; text-decoration: none; }
+.review-detail-breadcrumb a:hover { color: #203e5c; text-decoration: underline; }
+.review-detail-breadcrumb > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.review-detail-card { position: relative; overflow: hidden; padding: clamp(25px, 5vw, 58px); border: 1px solid #ffffffd9; border-radius: 28px; background: linear-gradient(150deg, #ffffffed, #f4f8fae8); box-shadow: 0 24px 70px #203e5c20, inset 0 1px #fff; }
+.review-detail-card::before { position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, #bd694b, #f1c77d 35%, #55a7d2 72%, #294563); content: ''; }
+.review-detail-card-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 34px; }
+.review-detail-card-top .eyebrow { margin: 0; }
+.review-detail-score { display: inline-flex; align-items: baseline; gap: 6px; padding: 10px 15px; border: 1px solid #eadfc6; border-radius: 999px; background: linear-gradient(135deg, #fff9e9, #f5e8cc); box-shadow: 0 5px 15px #8b70401a; color: #294563; }
+.review-detail-score > span { color: #bd8542; font-size: 17px; }
+.review-detail-score strong { font-size: 20px; }
+.review-detail-score small { color: #84909a; font-size: 10px; }
+.review-detail-card > h1 { max-width: 700px; margin: 20px 0 22px; color: #203e5c; font: 600 clamp(34px, 6vw, 58px)/1.08 var(--serif); letter-spacing: -.035em; }
+.review-detail-quote { position: relative; margin: 0; padding: 0 0 30px; color: #526474; font: 400 clamp(17px, 2.2vw, 21px)/1.85 var(--sans); white-space: pre-line; }
+.review-detail-quote::before { display: block; width: 52px; height: 3px; margin: 0 0 22px; border-radius: 2px; background: linear-gradient(90deg, #bd694b, #f1c77d); content: ''; }
+.review-detail-footer { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: 10px; padding: 22px 0; border-top: 1px solid #dbe5eb; border-bottom: 1px solid #dbe5eb; }
+.review-detail-author { display: flex; min-width: 0; align-items: center; gap: 12px; }
+.review-detail-avatar { display: grid; width: 46px; height: 46px; flex: 0 0 46px; place-items: center; border: 1px solid #a9c2d5; border-radius: 50%; background: linear-gradient(145deg, #e8f2f8, #c9deeb); color: #294563; font: 600 20px var(--serif); }
+.review-detail-author-copy { display: grid; gap: 4px; }
+.review-detail-author-copy strong { color: #294563; font-size: 13px; }
+.review-detail-author-copy small { color: #7a8995; font-size: 11px; }
+.review-detail-restaurant { position: relative; display: grid; min-width: 190px; gap: 4px; padding: 12px 43px 12px 15px; border: 1px solid #d5e1e9; border-radius: 14px; background: linear-gradient(135deg, #f7fafc, #edf4f8); color: #294563; text-decoration: none; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.review-detail-restaurant:hover { transform: translateY(-2px); border-color: #9dbbd1; box-shadow: 0 7px 16px #203e5c16; }
+.review-detail-restaurant-label { color: #758795; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.review-detail-restaurant strong { overflow: hidden; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.review-detail-restaurant-arrow { position: absolute; top: 50%; right: 13px; display: grid; width: 23px; height: 23px; place-items: center; transform: translateY(-50%); border-radius: 50%; background: #dceaf3; color: #356b98; }
+.review-detail-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.review-detail-restaurant-button { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #3678b8, #28527e); }
+.review-detail-restaurant-button:hover { background: linear-gradient(135deg, #4388c9, #2d5d8b); }
+@media (max-width: 620px) { .review-detail-page { min-height: 0; padding: 28px 0 52px; }.review-detail-card { border-radius: 20px; }.review-detail-card-top { align-items: flex-start; flex-direction: column; gap: 14px; margin-bottom: 25px; }.review-detail-footer { align-items: stretch; flex-direction: column; }.review-detail-restaurant { min-width: 0; }.review-detail-actions { flex-direction: column; }.review-detail-actions .button { justify-content: center; } }
+/* Review editor */
+.review-editor-page { position: relative; isolation: isolate; min-height: calc(100vh - 180px); overflow: hidden; padding: clamp(42px, 7vw, 86px) 0; background: linear-gradient(140deg, #e7eff5, #f7f6f1 58%, #f2e8df); }
+.review-editor-page::before { position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 8% 18%, #6ba5d135, transparent 34%), radial-gradient(ellipse at 92% 85%, #c879562e, transparent 30%), repeating-linear-gradient(135deg, transparent 0 44px, #29456308 45px 46px); content: ''; pointer-events: none; }
+.review-editor-layout { display: grid; grid-template-columns: minmax(230px, .78fr) minmax(0, 1.22fr); align-items: center; gap: clamp(30px, 6vw, 76px); }
+.review-editor-intro { padding: 18px 0; }
+.review-editor-kicker { display: flex; align-items: center; gap: 9px; color: #426e91; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.review-editor-kicker span { width: 7px; height: 7px; border-radius: 50%; background: #bd694b; box-shadow: 0 0 0 4px #bd694b20; }
+.review-editor-intro h1 { margin: 16px 0; color: #203e5c; font: 500 clamp(40px, 5vw, 62px)/1.04 var(--serif); letter-spacing: -.04em; }
+.review-editor-intro h1 em { color: #416f99; }
+.review-editor-intro > p:not(.review-editor-kicker) { max-width: 390px; color: #637483; font-size: 14px; line-height: 1.8; }
+.review-editor-restaurant { display: grid; gap: 5px; margin-top: 26px; padding: 14px 16px; border: 1px solid #cfdae4; border-radius: 14px; background: #ffffffa8; }
+.review-editor-restaurant span { color: #738594; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.review-editor-restaurant strong { color: #294563; font: 600 17px var(--serif); }
+.review-editor-back { display: inline-block; margin-top: 25px; color: #416f99; font-size: 12px; font-weight: 700; text-decoration: none; }
+.review-editor-back:hover { color: #203e5c; }
+.review-editor-form { padding: clamp(23px, 4vw, 38px); border: 1px solid #ffffffd9; border-radius: 24px; background: linear-gradient(150deg, #ffffffed, #f4f8fae8); box-shadow: 0 22px 64px #203e5c1c, inset 0 1px #fff; }
+.review-editor-form-heading { display: flex; align-items: center; gap: 13px; margin-bottom: 25px; padding-bottom: 18px; border-bottom: 1px solid #dce6ec; }
+.review-editor-form-icon { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #c5d9e7; border-radius: 13px; background: linear-gradient(145deg, #eaf4fa, #d6e8f2); color: #356b98; font-size: 22px; }
+.review-editor-form-heading small { color: #718596; font-size: 9px; font-weight: 700; letter-spacing: .13em; }
+.review-editor-form-heading h2 { margin: 3px 0 0; color: #203e5c; font: 600 23px var(--serif); }
+.review-editor-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.review-editor-field { min-width: 0; }
+.review-editor-field-wide { grid-column: 1 / -1; }
+.review-editor-field label { display: block; margin-bottom: 7px; color: #344f67; font-size: 11px; font-weight: 700; }
+.review-editor-field .form-control, .review-editor-field input, .review-editor-field textarea, .review-editor-field select { border: 1px solid #cbd9e2; border-radius: 10px; background: #ffffffd9; box-shadow: inset 0 1px 2px #203e5c08; }
+.review-editor-field .form-control:focus, .review-editor-field input:focus, .review-editor-field textarea:focus, .review-editor-field select:focus { border-color: #6a9bc1; outline: 3px solid #6a9bc126; }
+.review-editor-field textarea { min-height: 190px; resize: vertical; }
+.review-editor-field ul.errorlist { margin: 6px 0 0; padding: 0; color: #a94747; font-size: 11px; list-style: none; }
+.review-editor-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #dce6ec; }
+.review-editor-actions .button { min-height: 44px; border-radius: 11px; }
+.review-editor-save { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #3678b8, #28527e); }
+.review-editor-save:hover { background: linear-gradient(135deg, #4388c9, #2d5d8b); }
+@media (max-width: 760px) { .review-editor-layout { grid-template-columns: 1fr; gap: 24px; }.review-editor-intro { padding: 0; }.review-editor-intro h1 { font-size: clamp(38px, 10vw, 52px); }.review-editor-page { padding: 38px 0 56px; } }
+@media (max-width: 520px) { .review-editor-fields { grid-template-columns: 1fr; }.review-editor-field-wide { grid-column: auto; }.review-editor-actions { flex-direction: column-reverse; }.review-editor-actions .button { width: 100%; justify-content: center; } }
+/* Employee directory, employee reviews, and restaurant team summary */
+.employee-directory-add { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; border-radius: 999px; }
+.employee-directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
+.employee-directory-card { min-width: 0; overflow: hidden; border: 1px solid #cfdae4; border-radius: 20px; background: #fff; box-shadow: 0 10px 26px #203e5c16; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.employee-directory-card:hover { transform: translateY(-4px); border-color: #adc5d7; box-shadow: 0 18px 36px #203e5c24; }
+.employee-directory-photo { position: relative; display: grid; aspect-ratio: 16 / 10; place-items: center; overflow: hidden; background: linear-gradient(135deg, #e4edf3, #cbdce8); color: #345b84; text-decoration: none; }
+.employee-directory-photo::after { position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, #142e4666); content: ''; }
+.employee-directory-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.employee-directory-card:hover .employee-directory-photo img { transform: scale(1.04); }
+.employee-directory-photo > span:first-child { font: 500 clamp(45px, 7vw, 76px)/1 var(--serif); }
+.employee-directory-photo .employee-directory-position { position: absolute; z-index: 1; bottom: 13px; left: 15px; padding: 6px 10px; border: 1px solid #ffffff50; border-radius: 999px; background: #173650b8; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; backdrop-filter: blur(8px); }
+.employee-directory-body { display: flex; min-height: 190px; flex-direction: column; padding: 19px 21px; background: linear-gradient(155deg, #fff, #f0f5f8); }
+.employee-directory-body .card-kicker { margin: 0 0 7px; color: #658096; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.employee-directory-body h2 { margin: 0 0 5px; color: #203e5c; font: 600 21px/1.25 var(--serif); }
+.employee-directory-body h2 a { color: inherit; text-decoration: none; }
+.employee-directory-body h2 a:hover { color: #416f99; }
+.employee-directory-restaurant { overflow: hidden; margin: 0; color: #70808d; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.employee-directory-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 15px; border-top: 1px solid #dce6ec; color: #627789; font-size: 10px; }
+.employee-directory-footer b { color: #bd8542; }
+.employee-directory-footer .text-link { color: #356b98; font-size: 10px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.employee-review-grid .restaurant-review-card { min-height: 255px; }
+.employee-review-target { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding: 12px 14px; border: 1px solid #cfdae4; border-radius: 12px; background: linear-gradient(135deg, #f7fafc, #eaf2f7); color: #294563; text-decoration: none; }
+.employee-review-target > span { color: #7a8c9a; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.employee-review-target strong { overflow: hidden; margin-right: auto; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.employee-review-target i { display: grid; width: 23px; height: 23px; flex: 0 0 23px; place-items: center; border-radius: 50%; background: #dceaf3; color: #356b98; font-style: normal; transition: transform .18s ease; }
+.employee-review-target:hover { border-color: #a9c2d5; box-shadow: 0 5px 13px #203e5c14; }
+.employee-review-target:hover i { transform: translateX(3px); }
+.restaurant-worker-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 18px 0 16px; }
+.restaurant-worker-stats > div { display: grid; gap: 3px; padding: 11px 12px; border: 1px solid #d5e1e9; border-radius: 12px; background: linear-gradient(145deg, #f8fbfd, #eaf2f7); }
+.restaurant-worker-stats strong { color: #294563; font: 600 18px var(--serif); }
+.restaurant-worker-stats span { color: #738594; font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.restaurant-add-employee { display: flex; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, #3678b8, #28527e); }
+.restaurant-add-employee:hover { background: linear-gradient(135deg, #4388c9, #2d5d8b); }
+@media (max-width: 900px) { .employee-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .employee-directory-grid { grid-template-columns: 1fr; }.employee-directory-body { min-height: 170px; }.restaurant-worker-stats { gap: 7px; } }
+/* Employee profile detail */
+.employee-profile-container { max-width: 1120px; }
+.employee-profile-card { display: grid; grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr); overflow: hidden; border: 1px solid #ffffffd9; border-radius: 28px; background: linear-gradient(150deg, #ffffffed, #f4f8fae8); box-shadow: 0 24px 70px #203e5c20, inset 0 1px #fff; }
+.employee-profile-portrait { position: relative; display: grid; min-height: 420px; place-items: center; overflow: hidden; background: radial-gradient(circle at 25% 20%, #ffffffa8, transparent 30%), linear-gradient(145deg, #d8e7f0, #a9c4d7 58%, #799ab2); color: #294563; }
+.employee-profile-portrait::before, .employee-profile-portrait::after { position: absolute; width: 240px; height: 240px; border: 1px solid #ffffff65; border-radius: 50%; content: ''; }
+.employee-profile-portrait::after { width: 320px; height: 320px; border-color: #ffffff38; }
+.employee-profile-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.employee-profile-portrait > span { position: relative; z-index: 1; font: 500 clamp(84px, 12vw, 150px)/1 var(--serif); letter-spacing: -.07em; }
+.employee-profile-content { align-self: center; padding: clamp(28px, 5vw, 58px); }
+.employee-profile-content > .eyebrow { margin: 0 0 22px; }
+.employee-profile-position { display: inline-flex; margin: 0 0 12px; padding: 7px 12px; border: 1px solid #d4e2ec; border-radius: 999px; background: #eef5f9; color: #426e91; font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.employee-profile-content h1 { margin: 0 0 12px; color: #203e5c; font: 600 clamp(38px, 5vw, 58px)/1.05 var(--serif); letter-spacing: -.04em; }
+.employee-profile-content h1 em { color: #416f99; }
+.employee-profile-restaurant { display: inline-flex; align-items: center; gap: 7px; color: #356b98; font-size: 13px; font-weight: 700; text-decoration: none; }
+.employee-profile-restaurant:hover { color: #203e5c; text-decoration: underline; }
+.employee-profile-restaurant.is-unassigned { color: #7b8994; font-weight: 500; }
+.employee-profile-contact { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; color: #6c7b87; font-size: 11px; }
+.employee-profile-contact a { color: #617d94; text-decoration: none; }
+.employee-profile-contact a:hover { text-decoration: underline; }
+.employee-profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 27px; }
+.employee-profile-stats > div { display: grid; gap: 4px; padding: 13px 15px; border: 1px solid #d8e4eb; border-radius: 14px; background: linear-gradient(145deg, #f8fbfd, #eaf2f7); }
+.employee-profile-stats strong { color: #294563; font: 600 21px var(--serif); }
+.employee-profile-stats strong:first-letter { color: #bd8542; }
+.employee-profile-stats span { color: #738594; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.employee-profile-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 23px; }
+.employee-profile-edit { display: inline-flex; align-items: center; gap: 10px; border-radius: 11px; background: linear-gradient(135deg, #3678b8, #28527e); }
+.employee-profile-edit:hover { background: linear-gradient(135deg, #4388c9, #2d5d8b); }
+.employee-profile-actions .button-light { min-height: 44px; border-radius: 11px; }
+.employee-profile-reviews-link { color: #456d8d; font-size: 11px; font-weight: 700; text-decoration: none; }
+.employee-profile-reviews-link:hover { color: #203e5c; text-decoration: underline; }
+.employee-profile-reviews { padding-top: 12px; }
+.employee-review-detail-page .review-detail-card { max-width: 920px; margin-inline: auto; }
+@media (max-width: 760px) { .employee-profile-card { grid-template-columns: 1fr; }.employee-profile-portrait { min-height: 300px; aspect-ratio: 16 / 10; }.employee-profile-content { padding: 28px; } }
+@media (max-width: 520px) { .employee-profile-portrait { min-height: 230px; }.employee-profile-content { padding: 23px 20px; }.employee-profile-content h1 { font-size: 39px; }.employee-profile-actions { align-items: stretch; flex-direction: column; }.employee-profile-actions .button { justify-content: center; }.employee-profile-reviews-link { padding: 8px; text-align: center; } }
+.restaurant-team-copy h3 a { color: inherit; text-decoration: none; }
+.restaurant-team-copy h3 a:hover { color: #416f99; }
+.restaurant-team-profile-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; color: #356b98; font-size: 10px; font-weight: 700; text-decoration: none; }
+.restaurant-team-profile-link span { transition: transform .18s ease; }
+.restaurant-team-profile-link:hover { color: #203e5c; }
+.restaurant-team-profile-link:hover span { transform: translateX(3px); }
+.employee-profile-navigation-button { display: inline-flex; min-height: 44px; align-items: center; gap: 12px; padding: 0 16px; border: 1px solid #4e91c2; border-radius: 999px; background: linear-gradient(135deg, #3678b8, #28527e); box-shadow: 0 5px 14px #214c7628, inset 0 1px #ffffff30; color: #fff; font-size: 11px; font-weight: 700; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.employee-profile-navigation-button:hover { transform: translateY(-2px); background: linear-gradient(135deg, #4388c9, #2d5d8b); box-shadow: 0 8px 18px #214c7638; color: #fff; }
+.employee-profile-navigation-button span { display: inline-grid; width: 23px; height: 23px; place-items: center; border: 1px solid #ffffff35; border-radius: 50%; background: #ffffff20; transition: transform .18s ease; }
+.employee-profile-navigation-button:hover span { transform: translateX(2px); }
+.employee-profile-navigation-button.is-secondary { border-color: #bed1df; background: linear-gradient(135deg, #f7fafc, #e8f1f6); box-shadow: 0 4px 11px #203e5c12, inset 0 1px #fff; color: #315f83; }
+.employee-profile-navigation-button.is-secondary:hover { border-color: #8eafc7; background: linear-gradient(135deg, #fff, #e4eff6); box-shadow: 0 7px 16px #203e5c1c; color: #203e5c; }
+.employee-profile-navigation-button.is-secondary span { border-color: #b9d0df; background: #dceaf3; color: #356b98; }
+.employee-profile-all-actions { display: flex; width: 100%; justify-content: center; margin-top: 5px; }
+.employee-review-detail-back { display: flex; justify-content: flex-start; margin-top: 14px; }
+.employee-review-list-button { display: inline-flex; min-height: 44px; align-items: center; gap: 11px; padding: 0 17px; border: 1px solid #6aa2c7; border-radius: 999px; background: linear-gradient(135deg, #3678b8, #28527e); box-shadow: 0 6px 16px #214c7626, inset 0 1px #ffffff30; color: #fff; font-size: 11px; font-weight: 700; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.employee-review-list-button:hover { transform: translateY(-2px); background: linear-gradient(135deg, #4388c9, #2d5d8b); box-shadow: 0 9px 20px #214c7638; color: #fff; }
+.employee-review-list-button > span { display: inline-grid; width: 23px; height: 23px; place-items: center; border: 1px solid #ffffff35; border-radius: 50%; background: #ffffff20; transition: transform .18s ease; }
+.employee-review-list-button:hover > span { transform: translateX(-3px); }
+/* Center the single perk name field */
+.perk-create-page .restaurant-edit-heading { text-align: center; }
+.perk-create-page .restaurant-edit-fields { grid-template-columns: minmax(0, 560px); justify-content: center; }
+.perk-create-page .restaurant-edit-field { text-align: center; }
+.perk-create-page .restaurant-edit-field input { text-align: center; }
+.perk-create-page .restaurant-edit-actions { justify-content: center; }
+/* Space the restaurant detail actions */
+.restaurant-profile-summary > .restaurant-add-employee + .button { margin-top: 12px; }

@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from hyperservedj.mixins import DisabledFormMixin
-from restaurants.models import Restaurant
+from restaurants.models import Restaurant, Perks
 
 
 class RestaurantBaseForm(forms.ModelForm):
@@ -80,8 +80,8 @@ class RestaurantBaseForm(forms.ModelForm):
         return name
 
     def clean_description(self):
-        description = self.cleaned_data.get('description')
-        if len(description)< 20:
+        description = self.cleaned_data.get('description') or ''
+        if len(description.strip()) < 20:
             raise ValidationError('Description must be with at least 20 characters!')
         return description
 
@@ -90,7 +90,9 @@ class RestaurantBaseForm(forms.ModelForm):
 
 class RestaurantCreateForm(RestaurantBaseForm):
     class Meta(RestaurantBaseForm.Meta):
-        ...
+        fields = ['name', 'address', 'email', 'image', 'description', 'cuisine_type', 'perks', 'owner']
+
+
 
 class RestaurantDeleteForm(DisabledFormMixin,RestaurantBaseForm):
     ...
@@ -99,4 +101,14 @@ class RestaurantEditForm(RestaurantBaseForm):
     class Meta(RestaurantBaseForm.Meta):
         exclude = ['slug','owner']
 
+
+
+
+class CreatePerkForm(forms.ModelForm):
+    class Meta:
+        model = Perks
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g. Outdoor seating'}),
+        }
 

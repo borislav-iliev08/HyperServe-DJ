@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | HyperServe Admin{% endblock %}
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">HyperServe <span>ADMIN</span></a></div>
+{% endblock %}
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/admin.css' %}?v=skip-hidden-3">
+<style>.skip-to-content-link { display: none !important; }</style>
+{% endblock %}

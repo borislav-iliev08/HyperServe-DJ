@@ -20,6 +20,7 @@ from django.conf import settings
 from django.views.static import serve
 
 from .views import custom_404, HomeView
+from employees.views import EmployeeReviewDeleteView, EmployeeReviewDetailView, EmployeeReviewEditView, EmployeeReviewsListView
 
 urlpatterns = [
     path('static/<path:path>', serve, {'document_root': settings.BASE_DIR / 'templates' / 'static'}),
@@ -29,6 +30,10 @@ urlpatterns = [
     path('reviews/',include('reviews.urls')),
     path('restaurants/',include('restaurants.urls')),
     path('employees/',include('employees.urls')),
+    path('employee-reviews/<int:pk>/delete/', EmployeeReviewDeleteView.as_view(), name='employee-review-delete'),
+    path('employee-reviews/<int:pk>/edit/', EmployeeReviewEditView.as_view(), name='employee-review-edit'),
+    path('employee-reviews/<int:pk>/', EmployeeReviewDetailView.as_view(), name='employee-review-detail'),
+    path('employee-reviews/', EmployeeReviewsListView.as_view(), name='employee-reviews-list'),
 
 ]
 handler404 = custom_404

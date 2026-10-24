@@ -1,7 +1,9 @@
 from django.urls import include, path
-from restaurants.views import (RestaurantCreateView,RestaurantDeleteView,RestaurantDetailView,RestaurantListView,RestaurantUpdateView,)
+from restaurants.views import (RestaurantCreateView, RestaurantDeleteView, RestaurantDetailView, RestaurantListView,
+                               RestaurantUpdateView, CreatePerkView, )
 
 urlpatterns = [
+    path('perk_create/',CreatePerkView.as_view(),name='perks-create'),
     path('', RestaurantListView.as_view(), name='restaurants-list'),
     path('create/', RestaurantCreateView.as_view(), name='restaurant-create'),
     path('<slug:slug>/', RestaurantDetailView.as_view(), name='restaurant-detail'),

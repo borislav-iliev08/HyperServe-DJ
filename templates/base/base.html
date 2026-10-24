@@ -11,14 +11,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=restaurants-hero-refresh">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=restaurant-action-space">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
 
     {% include 'base/header.html' %}
 
-    {% include 'base/nav_bar.html' %}
+    {% if request.user.is_staff %}
+        {% include 'base/nav_bar_admin.html' %}
+    {% else %}
+        {% include 'base/nav_bar.html' %}
+    {% endif %}
 
     <main id="main-content">
         {% if messages %}

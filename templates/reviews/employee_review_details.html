@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% block title %}{{ review.title }} | Team review | HyperServe{% endblock %}
+{% block content %}
+<section class="review-detail-page employee-review-detail-page">
+    <div class="container review-detail-container">
+        <nav class="review-detail-breadcrumb" aria-label="Breadcrumb">
+            <a href="{% url 'employee-reviews-list' %}">Employee reviews</a>
+            <span aria-hidden="true">/</span>
+            <span>{{ review.title|truncatechars:42 }}</span>
+        </nav>
+        <article class="review-detail-card">
+            <div class="review-detail-card-top">
+                <p class="eyebrow"><span></span> A team story</p>
+                <div class="review-detail-score" aria-label="Rated {{ review.rating|floatformat:1 }} out of 5"><span aria-hidden="true">&#9733;</span><strong>{{ review.rating|floatformat:1 }}</strong><small>out of 5</small></div>
+            </div>
+            {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged for review</span>{% endif %}
+            <h1>{{ review.title }}</h1>
+            <blockquote class="review-detail-quote">{{ review.content }}</blockquote>
+            <div class="review-detail-footer">
+                <div class="review-detail-author">
+                    <span class="review-detail-avatar" aria-hidden="true">{{ review.author|first|upper }}</span>
+                    <span class="review-detail-author-copy"><strong>{{ review.author }}</strong><small>Guest review · {{ review.created_at|date:"F j, Y" }}</small></span>
+                </div>
+                <a class="review-detail-restaurant" href="{% url 'employee-detail' pk=review.employee.pk %}">
+                    <span class="review-detail-restaurant-label">For team member</span>
+                    <strong>{{ review.employee.first_name }} {{ review.employee.last_name }}</strong>
+                    <span class="review-detail-restaurant-arrow" aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+            <div class="review-detail-actions">
+                <a class="button review-detail-restaurant-button" href="{% url 'employee-review-edit' pk=review.pk %}">Edit review</a>
+                <a class="button button-danger" href="{% url 'employee-review-delete' pk=review.pk %}">Delete review</a>
+
+
+            </div>
+            <div class="employee-review-detail-back"><a class="button employee-review-list-button" href="{% url 'employee-reviews-list' %}"><span aria-hidden="true">&larr;</span> All employee reviews</a></div>
+        </article>
+    </div>
+</section>
+{% endblock %}

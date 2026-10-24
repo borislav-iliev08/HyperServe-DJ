@@ -1,1 +1,42 @@
-﻿{% extends 'base/base.html' %}{% block title %}Edit review · HyperServe{% endblock %}{% block content %}<section class="form-page"><div class="container form-layout"><div class="form-intro"><p class="eyebrow"><span></span> Guest notes</p><h1>Update your <em>review.</em></h1></div><form method="post" class="form-card">{% csrf_token %}{% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}{{ form.non_field_errors }}<div class="form-actions"><button class="button" type="submit">Save changes</button><a class="text-link" href="/reviews/">Cancel</a></div></form></div></section>{% endblock %}
+{% extends 'base/base.html' %}
+{% block title %}Edit {{ review.title }} | HyperServe{% endblock %}
+{% block content %}
+<section class="review-editor-page">
+    <div class="container review-editor-layout">
+        <aside class="review-editor-intro">
+            <p class="review-editor-kicker"><span></span> Guest notes</p>
+            <h1>Polish your <em>story.</em></h1>
+            <p>Your experience helps other guests find places worth remembering. Update your review whenever you need.</p>
+            {% if review.restaurant %}
+            <div class="review-editor-restaurant">
+                <span>Review for</span>
+                <strong>{{ review.restaurant.name }}</strong>
+            </div>
+            {% endif %}
+            <a class="review-editor-back" href="{% url 'review-detail' pk=review.pk %}">&larr; Back to review</a>
+        </aside>
+        <form method="post" class="review-editor-form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="review-editor-form-heading">
+                <span class="review-editor-form-icon" aria-hidden="true">&#9998;</span>
+                <div><small>REVIEW EDITOR</small><h2>Make it yours</h2></div>
+            </div>
+            <div class="review-editor-fields">
+                {% for field in form %}
+                <div class="review-editor-field{% if field.name == 'content' %} review-editor-field-wide{% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}
+                    {{ field.errors }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="review-editor-actions">
+                <a class="button button-light" href="{% url 'review-detail' pk=review.pk %}">Cancel</a>
+                <button class="button review-editor-save" type="submit">Save changes <span>&rarr;</span></button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

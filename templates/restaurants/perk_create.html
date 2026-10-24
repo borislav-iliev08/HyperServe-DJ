@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% block title %}Add a perk &middot; HyperServe{% endblock %}
+{% block content %}
+<section class="restaurant-edit-page perk-create-page">
+    <div class="container restaurant-edit-container">
+        <a class="restaurant-edit-back" href="{% url 'restaurants-list' %}">&larr; Back to restaurants</a>
+        <header class="restaurant-edit-heading">
+            <p class="eyebrow"><span></span> Restaurant amenities</p>
+            <h1>Add a <em>perk</em></h1>
+            <p>Create an amenity that can be added to restaurant profiles.</p>
+        </header>
+        <form method="post" class="restaurant-edit-form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="restaurant-edit-fields">
+                {% for field in form %}
+                    <div class="restaurant-edit-field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="restaurant-edit-actions">
+                <button class="button" type="submit">Add Perk <span aria-hidden="true">&rarr;</span></button>
+                <a class="restaurant-edit-cancel" href="{% url 'home' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

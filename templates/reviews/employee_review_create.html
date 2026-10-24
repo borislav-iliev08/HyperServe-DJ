@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% block title %}Write a team review | HyperServe{% endblock %}
+{% block content %}
+<section class="review-editor-page">
+    <div class="container review-editor-layout">
+        <aside class="review-editor-intro">
+            <p class="review-editor-kicker"><span></span> Share your experience</p>
+            <h1>A note for <em>{{ employee.first_name }}.</em></h1>
+            <p>Your feedback helps celebrate great hospitality and recognize the people behind it.</p>
+            <div class="review-editor-restaurant"><span>Team member</span><strong>{{ employee.first_name }} {{ employee.last_name }}</strong></div>
+            <a class="review-editor-back" href="{% url 'employee-detail' pk=employee.pk %}">&larr; Back to profile</a>
+        </aside>
+        <form method="post" class="review-editor-form">
+            {% csrf_token %}{{ form.non_field_errors }}
+            <div class="review-editor-form-heading"><span class="review-editor-form-icon" aria-hidden="true">&#10024;</span><div><small>TEAM REVIEW</small><h2>Share the moment</h2></div></div>
+            <div class="review-editor-fields">
+                {% for field in form %}
+                <div class="review-editor-field{% if field.name == 'content' %} review-editor-field-wide{% endif %}">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>
+                {% endfor %}
+            </div>
+            <div class="review-editor-actions"><a class="button button-light" href="{% url 'employee-detail' pk=employee.pk %}">Cancel</a><button class="button review-editor-save" type="submit">Publish review <span>&rarr;</span></button></div>
+        </form>
+    </div>
+</section>
+{% endblock %}

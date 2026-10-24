@@ -42,6 +42,11 @@
             <p class="card-kicker">Guest feedback</p>
             <strong class="restaurant-profile-rating">{% if restaurant.avg_rating != None %}<span>&#9733;</span> {{ restaurant.avg_rating|floatformat:1 }}{% else %}<span class="no-rating">Not rated</span>{% endif %}</strong>
             <p>Average rating from {{ review_count }} guest review{{ review_count|pluralize }}</p>
+            <div class="restaurant-worker-stats" aria-label="Team statistics">
+                <div><strong>{{ employee_count }}</strong><span>Team members</span></div>
+                <div><strong>{% if team_avg_rating != None %}&#9733; {{ team_avg_rating|floatformat:1 }}{% else %}&mdash;{% endif %}</strong><span>Team rating</span></div>
+            </div>
+            <a class="button button-small restaurant-add-employee" href="/employees/create/?restaurant={{ restaurant.pk }}">Add Employee <span>&rarr;</span></a>
             <a class="button button-small" href="/reviews/create/?restaurant={{ restaurant.pk }}">Write a review <span>&rarr;</span></a>
         </aside>
     </div>
@@ -57,8 +62,9 @@
                     {{ employee.first_name|first|upper }}{{ employee.last_name|first|upper }}
                 </div>
                 <div class="restaurant-team-copy">
-                    <h3>{{ employee.first_name }} {{ employee.last_name }}</h3>
+                    <h3><a href="{% url 'employee-detail' pk=employee.pk %}">{{ employee.first_name }} {{ employee.last_name }}</a></h3>
                     <span>{{ employee.position }}</span>
+                    <a class="restaurant-team-profile-link" href="{% url 'employee-detail' pk=employee.pk %}">View profile <span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <div class="restaurant-team-rating">
                     {% if employee.avg_rating != None %}<strong><span>&#9733;</span>
@@ -85,6 +91,7 @@
                 <h3>{{ review.title }}</h3>
                 <p>{{ review.content }}</p>
                 <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>
+                <a class="button button-small review-detail-button" href="{% url 'review-detail' pk=review.pk %}">Read review <span>&rarr;</span></a>
             </article>
             {% empty %}<p class="muted">No reviews yet. Be the first to share your experience.</p>{% endfor %}
         </div>

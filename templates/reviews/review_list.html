@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% block title %}Guest reviews | HyperServe{% endblock %}
+{% block content %}
+<section class="page-hero restaurants-hero">
+    <div class="container">
+        <div class="restaurants-hero-title-row">
+            <h1>Stories from <em>the table.</em></h1>
+            <span class="restaurants-world-mark" aria-hidden="true">
+                <svg viewBox="0 0 48 48" focusable="false">
+                    <path d="M18 15c-2-2 2-3 0-6M24 14c-2-2 2-3 0-6M30 15c-2-2 2-3 0-6"></path>
+                    <path d="M11 31a13 13 0 0 1 26 0M8 34h32M13 38h22"></path>
+                    <path d="M21 18h6"></path>
+                </svg>
+            </span>
+        </div>
+        <p class="hero-description">Read what guests have to say about their dining experiences.</p>
+    </div>
+</section>
+<section class="section-space restaurants-directory">
+    <div class="container">
+        <form class="restaurant-search-panel" method="get" action="">
+            <div class="restaurant-search-row">
+                <label class="restaurant-search-field" for="review-search">
+                    <span class="restaurant-search-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Search reviews</span>
+                    <input id="review-search" type="search" name="q" value="{{ search_query }}" placeholder="Search reviews or restaurants">
+                </label>
+                {% if selected_flagged %}<input type="hidden" name="flagged" value="{{ selected_flagged }}">
+                {% endif %}
+                <button class="button restaurant-search-button" type="submit">Search</button>
+            </div>
+        </form>
+        <div class="restaurant-results-layout">
+            <form class="restaurant-filter-panel" method="get" action="" aria-label="Review filters">
+                <input type="hidden" name="q" value="{{ search_query }}">
+                <h2>Filters</h2>
+                <label class="restaurant-filter-dropdown" for="review-status">Review status</label>
+                <select id="review-status" class="form-select" name="flagged">
+                    <option value=""
+                            {% if not selected_flagged %}selected
+                            {% endif %}>All reviews</option>
+                    <option value="normal"
+                            {% if selected_flagged == 'normal' %}selected
+                            {% endif %}>Appropriate reviews</option>
+                    <option value="flagged"
+                            {% if selected_flagged == 'flagged' %}selected
+                            {% endif %}>Inappropriate reviews</option>
+                </select>
+                <button class="button perk-apply-button" type="submit">Apply filters</button>
+                <a class="restaurant-clear-button" href="{% url 'reviews-list' %}">Clear filters</a>
+            </form>
+            <div class="restaurant-results">
+                <p class="restaurant-result-count">{{ page_obj.paginator.count }} review{{ page_obj.paginator.count|pluralize }}</p>
+                <div class="card-grid restaurant-grid">
+                    {% for review in reviews %}
+                    <article class="review-card restaurant-review-card">
+                        <div class="review-rating">&#9733; {{ review.rating|floatformat:1 }}</div>
+                        {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Inappropriate language</span>{% endif %}
+                        <h3>{{ review.title }}</h3>
+                        <p>{{ review.content|truncatechars:180 }}</p>
+                        <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>
+                        <div class="review-card-actions">
+                            {% if review.restaurant %}<a class="button button-small review-detail-button restaurant-card-action" href="/restaurants/{{ review.restaurant.slug|default:review.restaurant.pk }}/">{{ review.restaurant.name|truncatechars:18 }} <span>&rarr;</span></a>
+                            {% else %}
+                                <span aria-hidden="true"></span>
+                            {% endif %}
+                            <a class="button button-small review-detail-button" href="{% url 'review-detail' pk=review.pk %}">Read review <span>&rarr;</span></a>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <div class="empty-state restaurant-empty-state"><h3>No reviews found</h3><p>Try another search or change the review status filter.</p></div>
+                    {% endfor %}
+                </div>
+                {% if is_paginated %}
+                <nav class="restaurant-pagination" aria-label="Review pages">
+                    {% if page_obj.has_previous %}
+                        <a href="{% querystring page=page_obj.previous_page_number %}">&larr; Previous</a>
+                    {% else %}
+                        <span class="is-disabled">&larr; Previous</span>
+                    {% endif %}
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_next %}
+                        <a href="{% querystring page=page_obj.next_page_number %}">Next &rarr;</a>
+                    {% else %}
+                        <span class="is-disabled">Next &rarr;</span>
+                    {% endif %}
+                </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

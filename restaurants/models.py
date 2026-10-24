@@ -1,7 +1,5 @@
 from django.db import models
-from django.urls import reverse
 from django.utils.text import slugify
-
 from restaurants.validators import validate_real_domain
 
 
@@ -34,11 +32,9 @@ class Restaurant(models.Model):
     cuisine_type = models.CharField(choices=TypeChoices.choices,default=TypeChoices.OT,max_length=30)
     perks = models.ManyToManyField(Perks,blank=True,related_name='restaurant_perks')
     owner = models.CharField(max_length=50)
-    slug = models.CharField(max_length=50,blank=True,null=True)
+    rating = models.PositiveIntegerField(default=0, editable=False)
+    slug = models.CharField(max_length=100,blank=True)
 
-    def get_absolute_url(self):
-        identifier = self.slug or self.pk
-        return reverse('restaurant-detail', kwargs={'slug': identifier})
 
     def save(self,*args,**kwargs):
         if not self.slug:
