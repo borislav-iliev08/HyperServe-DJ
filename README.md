@@ -94,7 +94,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Database Setup & Migrations
-Create your PostgreSQL database named `hyperserve_db`, then run:
+Create your PostgreSQL database named `hyperserve_dj`, then run:
 
 ```bash
 python manage.py makemigrations
