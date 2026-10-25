@@ -1,6 +1,6 @@
 # HyperServe  — Global Culinary Discovery Platform
 
-![HyperServe Banner]()
+![HyperServe Banner](https://private-user-images.githubusercontent.com/215028638/683974813-777d6488-108c-415d-9eef-29682b2b6b62.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjAzOTUsIm5iZiI6MTc5MjkyMDA5NSwicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTc0ODEzLTc3N2Q2NDg4LTEwOGMtNDE1ZC05ZWVmLTI5NjgyYjJiNmI2Mi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTIxMzVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yM2ZhZDNhN2MxNDRmMjI0ZjlmM2EwMTRiMzBhYWVkZWM3OGE0MmE5MTEwYmU4MGEyNmFkMjEzMTNlYjliMTNkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.THVVvt7aI_3LeObhFO2CFkDu5wHozLZQnBLLlVABQBI)
 
 [![Django](https://img.shields.io/badge/Django-5.2+-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
