@@ -26,9 +26,9 @@ Here is a visual overview of the HyperServe platform interface:
 ###  Restaurant & Staff Management
 > *Manage restaurant profiles, dynamic perks, cuisine tags, and dedicated staff records.*
 
-| Restaurants Directory | Restaurant Details & Team |
+| Restaurants Catalog | Restaurant Details & Team |
 | :---: | :---: |
-| ![Restaurant Directory](docs/images/restaurants_list.png) | ![Restaurant Detail View](docs/images/restaurant_detail.png) |
+| ![Restaurant Directory](https://private-user-images.githubusercontent.com/215028638/683978427-45151c9a-84ac-4a56-95d3-9226d8faa90c.PNG?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjExNzQsIm5iZiI6MTc5MjkyMDg3NCwicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTc4NDI3LTQ1MTUxYzlhLTg0YWMtNGE1Ni05NWQzLTkyMjZkOGZhYTkwYy5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTM0MzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hZGU1MTZhNzc5MDMxOTZjNWY0NmQ4MWQyODIxYmU4MjU0YWIwOTMxYTk4ZWRlYjJlZmNlZTdmNjU4ZGNmMTNmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.Ag9XuLZgmgBx4o3HuAYYuLL-aZTbOfL1sC08ZPghs3w) | ![Restaurant Detail View](docs/images/restaurant_detail.png) |
 
 | Staff Directory | Employee Profile & Reviews |
 | :---: | :---: |
