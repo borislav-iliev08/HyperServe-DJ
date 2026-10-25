@@ -39,9 +39,9 @@ Here is a visual overview of the HyperServe platform interface:
 ###  Moderated Review System
 > *Community-driven review platform featuring automated keyword moderation and star rating aggregation.*
 
-| Community Reviews Catalog | Flagged Content Moderation |
+| Community Reviews Catalog | Reviews Details|
 | :---: | :---: |
-| ![Review Catalog](docs/images/reviews_list.png) | ![Moderation & Filtering](docs/images/reviews_moderation.png) |
+| ![Review Catalog](https://private-user-images.githubusercontent.com/215028638/683980039-ca13f11c-0533-4f56-aafc-b2693e190d6b.PNG?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjE2MTAsIm5iZiI6MTc5MjkyMTMxMCwicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTgwMDM5LWNhMTNmMTFjLTA1MzMtNGY1Ni1hYWZjLWIyNjkzZTE5MGQ2Yi5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTQxNTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zMmQ4ODZjYTAwMmNmYjFlODRjYzBkN2RiZmU0NjBjMWE3ZGE1ZTBhNmY5ZTViODc5NTFjMWVmMGQwZWM1NGQwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.R88Pmksl37nl1rw2qg8CmbUnoGHQA_T-0PrkHljcqRQ) | ![Moderation & Filtering](docs/images/reviews_moderation.png) |
 
 ---
 
