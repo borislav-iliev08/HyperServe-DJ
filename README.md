@@ -81,7 +81,10 @@ Ensure you have the following installed:
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/borislav-iliev08/hyperservedj.git
+git clone [https://github.com/borislav-iliev08/hyperservedj.git](https://github.com/borislav-iliev08/HyperServe-DJ)
+```
+After this type in the terminal
+```bash
 cd hyperservedj
 ```
 
