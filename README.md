@@ -44,7 +44,12 @@ Here is a visual overview of the HyperServe platform interface:
 | ![Review Catalog](https://private-user-images.githubusercontent.com/215028638/683980039-ca13f11c-0533-4f56-aafc-b2693e190d6b.PNG?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjE2MTAsIm5iZiI6MTc5MjkyMTMxMCwicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTgwMDM5LWNhMTNmMTFjLTA1MzMtNGY1Ni1hYWZjLWIyNjkzZTE5MGQ2Yi5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTQxNTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zMmQ4ODZjYTAwMmNmYjFlODRjYzBkN2RiZmU0NjBjMWE3ZGE1ZTBhNmY5ZTViODc5NTFjMWVmMGQwZWM1NGQwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.R88Pmksl37nl1rw2qg8CmbUnoGHQA_T-0PrkHljcqRQ) | ![Moderation & Filtering](https://private-user-images.githubusercontent.com/215028638/683981914-eb509d03-2856-4143-839b-f4f93e047b1a.PNG?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjE5NDQsIm5iZiI6MTc5MjkyMTY0NCwicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTgxOTE0LWViNTA5ZDAzLTI4NTYtNDE0My04MzliLWY0ZjkzZTA0N2IxYS5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTQ3MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03NWE0OTk3YjMwMDMzNGI4NTk2ZmRiMjZjNzYxNGZhOTZlZGZjNTAxN2NkZWRkY2YxYzVhMTdmMGE2YzNkMGY0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.gp7bb7p-Nr24N2MletnB5-Y2UIqEeZ80hakH9dZEwMQ) |
 
 ---
+### Admin Extra Options
+| Navigation Extra Button | Perks Creating|
+| :---: | :---: |
+| ![Navigation Extra]() | ![Perks Create]() |
 
+---
 ##  Key Features
 
 - ** Global Restaurant Directory:** Detailed profiles with custom slugs (`/restaurants/restaurant-name-cuisine/`), cuisine types, operating addresses, owner credentials, and dynamic perks.
@@ -116,7 +121,3 @@ Visit the platform in your browser at `http://127.0.0.1:8000/`.
 - **GitHub:** [@borislav-iliev08](https://github.com/borislav-iliev08)
 - **Email:** borislav718@gmail.com
 ---
-
-##  License
-
-This project is open-source and available under the [MIT License](LICENSE).
