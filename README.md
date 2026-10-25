@@ -64,7 +64,7 @@ Here is a visual overview of the HyperServe platform interface:
 
 ##  Tech Stack & Architecture
 
-- **Backend:** Python 3.10+, Django 5.2 (Class-Based Views, Mixins, ORM Aggregation)
+- **Backend:** Python 3.10+, Django 5.2 (Class-Based Views, Mixins, ORM(Object-Related Mapping))
 - **Database:** PostgreSQL
 - **Frontend:** HTML5, CSS3, Bootstrap 5 / Custom Styling
 - **Architecture Pattern:** MVT (Model-View-Template) with modular app structure (`restaurants`, `employees`, `reviews`)
