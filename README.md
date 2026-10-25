@@ -85,7 +85,7 @@ git clone https://github.com/borislav-iliev08/HyperServe-DJ.git
 ```
 After this type in the terminal
 ```bash
-cd hyperservedj
+cd .\HyperServe-DJ\
 ```
 
 ### 3. Install Dependencies
