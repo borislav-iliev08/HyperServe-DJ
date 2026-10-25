@@ -47,7 +47,7 @@ Here is a visual overview of the HyperServe platform interface:
 ### Admin Extra Options
 | Navigation Extra Button | Perks Creating|
 | :---: | :---: |
-| ![Navigation Extra]() | ![Perks Create]() |
+| ![Navigation Extra](https://private-user-images.githubusercontent.com/215028638/683983749-97b0667e-acee-44f7-ba77-0f46e8f052b4.PNG?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjIyODksIm5iZiI6MTc5MjkyMTk4OSwicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTgzNzQ5LTk3YjA2NjdlLWFjZWUtNDRmNy1iYTc3LTBmNDZlOGYwNTJiNC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTUzMDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mMTJlYjJjN2ZlMWEwNzcxZGU1OGVjYjQ1NTlhNTg4ZWJmMzVmNGIyY2EyZjNjY2Y4ODdiMjU0ZmMxOTczZjU0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.SNuTB-2Q93QN1T3sLoeG2IrcObGMoGy-lUdKxFZaEv4) | ![Perks Create]() |
 
 ---
 ##  Key Features
