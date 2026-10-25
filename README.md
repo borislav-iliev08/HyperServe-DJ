@@ -1,6 +1,6 @@
 # HyperServe  — Global Culinary Discovery Platform
 
-![HyperServe Banner](docs/images/banner.png)
+![HyperServe Banner]()
 
 [![Django](https://img.shields.io/badge/Django-5.2+-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
