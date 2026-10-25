@@ -19,7 +19,6 @@ Here is a visual overview of the HyperServe platform interface:
 > *Discover top-rated restaurants, top-rated chefs, and recent dining experiences in real time.*
 
 | Home Page Showcase |
-| :---: | :---: |
 | ![Home Page](https://private-user-images.githubusercontent.com/215028638/683975834-e88f8f85-8e94-4b4c-8de7-676d65507f83.PNG?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI5MjA2MTcsIm5iZiI6MTc5MjkyMDMxNywicGF0aCI6Ii8yMTUwMjg2MzgvNjgzOTc1ODM0LWU4OGY4Zjg1LThlOTQtNGI0Yy04ZGU3LTY3NmQ2NTUwN2Y4My5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNVQwOTI1MTdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mNTU2NzI5ZTZkYmZkOGRmNDIyNmVmYjhkMjgzZmI5MTE4ZWMwNWE0NWE5ZWJmMDExMTFkMWJjMTY4YjM4NDEzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.qw9zTpBgN5aTwz8W-yhKl1MKEnFeIau5YrT8SfvRgss)
 
 ---
