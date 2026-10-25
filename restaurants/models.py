@@ -23,6 +23,9 @@ class Restaurant(models.Model):
         IT = 'Italian','Italian'
         IN = 'Indonesian','Indonesian'
         SP = 'Spanish','Spanish'
+        ME = 'Mediterranean','Mediterranean'
+        TH = 'Thai','Thai'
+        FR = 'French','French'
         OT = 'Other','Other'
     name = models.CharField(max_length=50,unique=True)
     address = models.CharField(max_length=200,unique=True)
