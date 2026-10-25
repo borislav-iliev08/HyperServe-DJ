@@ -19,14 +19,21 @@
                 </div>
             </div>
 
-            {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged for inappropriate language</span>{% endif %}
+            {% if review.is_flagged %}
+                <span class="flagged-status">
+                    <i aria-hidden="true"></i>Flagged for inappropriate language
+                </span>
+            {% endif %}
             <h1>{{ review.title }}</h1>
             <blockquote class="review-detail-quote">{{ review.content }}</blockquote>
 
             <div class="review-detail-footer">
                 <div class="review-detail-author">
                     <span class="review-detail-avatar" aria-hidden="true">{{ review.author|first|upper }}</span>
-                    <span class="review-detail-author-copy"><strong>{{ review.author }}</strong><small>Guest review · {{ review.created_at|date:"F j, Y" }}</small></span>
+                    <span class="review-detail-author-copy"><strong>{{ review.author }}</strong>
+                        <small>Guest review · {{ review.created_at|date:"F j, Y" }}
+                        </small>
+                    </span>
                 </div>
                 {% if review.restaurant %}
                 <a class="review-detail-restaurant" href="/restaurants/{{ review.restaurant.slug|default:review.restaurant.pk }}/">

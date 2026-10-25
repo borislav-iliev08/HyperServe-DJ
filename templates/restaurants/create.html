@@ -18,7 +18,9 @@
                     <div class="restaurant-edit-field{% if field.name == 'description' or field.name == 'perks' %} restaurant-edit-field-wide{% endif %}{% if field.name == 'perks' %} restaurant-edit-perks{% endif %}">
                         {{ field.label_tag }}
                         {{ field }}
-                        {% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}
+                        {% if field.help_text %}
+                            <small class="helptext">{{ field.help_text }}</small>
+                        {% endif %}
                         {{ field.errors }}
                     </div>
                 {% endfor %}

@@ -52,7 +52,12 @@
                             <div class="restaurant-card-meta"><span class="card-kicker">{{ restaurant.cuisine_type }}</span><span class="restaurant-rating">{% if restaurant.avg_rating != None %}<b>&#9733;</b> {{ restaurant.avg_rating|floatformat:1 }}{% else %}<span class="rating-unavailable">No ratings</span>{% endif %}</span></div>
                             <h2><a href="{% url 'restaurant-detail' slug=restaurant.slug|default:restaurant.pk %}">{{ restaurant.name }}</a></h2>
                             <p class="restaurant-description">{{ restaurant.description|default:"A local dining destination ready to welcome you."|truncatechars:125 }}</p>
-                            {% if restaurant.perks.all %}<div class="restaurant-perk-tags">{% for perk in restaurant.perks.all %}<span>{{ perk.name }}</span>{% endfor %}</div>{% endif %}
+                            {% if restaurant.perks.all %}
+                                <div class="restaurant-perk-tags">
+                                    {% for perk in restaurant.perks.all %}
+                                        <span>{{ perk.name }}</span>
+                                    {% endfor %}</div>
+                            {% endif %}
                             <p class="restaurant-address">{{ restaurant.address }}</p>
                             <a class="text-link restaurant-discover-link" href="{% url 'restaurant-detail' slug=restaurant.slug|default:restaurant.pk %}">View details <span>&rarr;</span></a>
                         </div>
@@ -63,9 +68,17 @@
                 </div>
                 {% if is_paginated %}
                 <nav class="restaurant-pagination" aria-label="Restaurant pages">
-                    {% if page_obj.has_previous %}<a href="{% querystring page=page_obj.previous_page_number %}">&larr; Previous</a>{% else %}<span class="is-disabled">&larr; Previous</span>{% endif %}
+                    {% if page_obj.has_previous %}
+                        <a href="{% querystring page=page_obj.previous_page_number %}">&larr; Previous</a>
+                    {% else %}
+                        <span class="is-disabled">&larr; Previous</span>
+                    {% endif %}
                     <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-                    {% if page_obj.has_next %}<a href="{% querystring page=page_obj.next_page_number %}">Next &rarr;</a>{% else %}<span class="is-disabled">Next &rarr;</span>{% endif %}
+                    {% if page_obj.has_next %}
+                        <a href="{% querystring page=page_obj.next_page_number %}">Next &rarr;</a>
+                    {% else %}
+                        <span class="is-disabled">Next &rarr;</span>
+                    {% endif %}
                 </nav>
                 {% endif %}
             </div>
@@ -73,7 +86,11 @@
                 <input type="hidden" name="q" value="{{ search_query }}">
                 <h2>Filters</h2>
                 <details class="restaurant-filter-dropdown">
-                    <summary>Perks{% if selected_perks %}<span>{{ selected_perks|length }}</span>{% endif %}</summary>
+                    <summary>Perks
+                        {% if selected_perks %}
+                            <span>{{ selected_perks|length }}</span>
+                        {% endif %}
+                    </summary>
                     {% if active_perks %}
                     <div class="perk-options">
                         {% for perk in active_perks %}
@@ -83,14 +100,23 @@
                         </label>
                         {% endfor %}
                     </div>
-                    {% else %}<p class="perk-empty-message">No perks are available yet.</p>{% endif %}
+                    {% else %}
+                        <p class="perk-empty-message">No perks are available yet.</p>
+                    {% endif %}
                 </details>
                 <details class="restaurant-filter-dropdown">
-                    <summary>Cuisine{% if selected_cuisines %}<span>{{ selected_cuisines|length }}</span>{% endif %}</summary>
+                    <summary>Cuisine
+                        {% if selected_cuisines %}
+                            <span>{{ selected_cuisines|length }}</span>
+                        {% endif %}
+                    </summary>
                     <div class="perk-options">
                         {% for cuisine_value, cuisine_label in cuisine_choices %}
                         <label class="perk-option" for="cuisine-{{ forloop.counter }}">
-                            <input id="cuisine-{{ forloop.counter }}" type="checkbox" name="cuisine" value="{{ cuisine_value }}" {% if cuisine_value in selected_cuisines %}checked{% endif %}>
+                            <input id="cuisine-{{ forloop.counter }}" type="checkbox" name="cuisine" value="{{ cuisine_value }}"
+                                   {% if cuisine_value in selected_cuisines %}
+                                   checked
+                                   {% endif %}>
                             <span>{{ cuisine_label }}</span>
                         </label>
                         {% endfor %}

@@ -1,1 +1,123 @@
-# HyperServe-DJ
+# HyperServe  — Global Culinary Discovery Platform
+
+![HyperServe Banner](docs/images/banner.png)
+
+[![Django](https://img.shields.io/badge/Django-5.2+-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#license)
+
+**HyperServe** is a premier global digital platform uniting restaurants, culinary teams, and diners worldwide. Built using Python and Django, HyperServe provides a centralized ecosystem where food enthusiasts discover top-rated dining spots, explore authentic reviews, and connect with the hospitality professionals (chefs, managers, waiters, bartenders) behind every exceptional meal.
+
+---
+
+##  Interface Preview
+
+Here is a visual overview of the HyperServe platform interface:
+
+###  Landing & Discovery Dashboard
+> *Discover top-rated restaurants, top-rated chefs, and recent dining experiences in real time.*
+
+| Home Page Showcase | Top Dining & Chef Aggregation |
+| :---: | :---: |
+| ![Home Page](docs/images/homepage_hero.png) | ![Top Chefs & Reviews](docs/images/homepage_chefs.png) |
+
+---
+
+###  Restaurant & Staff Management
+> *Manage restaurant profiles, dynamic perks, cuisine tags, and dedicated staff records.*
+
+| Restaurants Directory | Restaurant Details & Team |
+| :---: | :---: |
+| ![Restaurant Directory](docs/images/restaurants_list.png) | ![Restaurant Detail View](docs/images/restaurant_detail.png) |
+
+| Staff Directory | Employee Profile & Reviews |
+| :---: | :---: |
+| ![Staff Directory](docs/images/employees_list.png) | ![Employee Detail View](docs/images/employee_detail.png) |
+
+---
+
+###  Moderated Review System
+> *Community-driven review platform featuring automated keyword moderation and star rating aggregation.*
+
+| Community Reviews Catalog | Flagged Content Moderation |
+| :---: | :---: |
+| ![Review Catalog](docs/images/reviews_list.png) | ![Moderation & Filtering](docs/images/reviews_moderation.png) |
+
+---
+
+##  Key Features
+
+- ** Global Restaurant Directory:** Detailed profiles with custom slugs (`/restaurants/restaurant-name-cuisine/`), cuisine types, operating addresses, owner credentials, and dynamic perks.
+- ** Professional Hospitality Staffing:** Employee management categorized by roles (Chef, Sous Chef, Bartender, Waiter, Manager, Host, Cleaner) linked directly to their respective venues.
+- ** Dual Review Engine:** Separate evaluation engines for **Venue Experience** and **Staff Performance**, calculating average ratings dynamically via Django `Avg` annotations.
+- ** Automated Content Moderation:** Built-in bad word filtering automatically marks abusive or inappropriate reviews with an `is_flagged` flag without blocking submission.
+- ** Domain Verification:** Strict email validation enforcing real/supported email providers (`@gmail.com`, `@yahoo.com`, `@outlook.com`, `@hypserve.com`, etc.).
+- ** Read-Only Form Safety:** Custom `DisabledFormMixin` for confirmation workflows (delete/disable views) preserving UI consistency without code duplication.
+- ** Comprehensive Search & Filtering:** Filter by cuisine types, employee positions, active perks, and flagged review statuses with optimized pagination.
+
+---
+
+##  Tech Stack & Architecture
+
+- **Backend:** Python 3.10+, Django 5.2 (Class-Based Views, Mixins, ORM Aggregation)
+- **Database:** PostgreSQL
+- **Frontend:** HTML5, CSS3, Bootstrap 5 / Custom Styling
+- **Architecture Pattern:** MVT (Model-View-Template) with modular app structure (`restaurants`, `employees`, `reviews`)
+
+---
+
+
+##  Installation & Setup Guide
+
+### 1. Prerequisites
+Ensure you have the following installed:
+- Python 3.10 or higher
+- Git
+
+### 2. Clone the Repository
+```bash
+git clone https://github.com/borislav-iliev08/hyperservedj.git
+cd hyperservedj
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Database Setup & Migrations
+Create your PostgreSQL database named `hyperserve_db`, then run:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### 5. Create Superuser (Admin Access)
+```bash
+python manage.py createsuperuser
+```
+
+### 6. Run Development Server
+```bash
+python manage.py runserver
+```
+
+Visit the platform in your browser at `http://127.0.0.1:8000/`.
+
+---
+
+##  Author & Connect
+
+**Borislav Iliev** — Software Developer & Creator of HyperServe
+
+- **Instagram:** [@b_.iliew._](https://www.instagram.com/b_.iliew._?xtok=MWszZHR0OGxkOTMwNQ==)
+- **Facebook:** [Borislav Iliev Profile](https://www.facebook.com/share/1FChyJ1qt9/)
+- **GitHub:** [@borislav-iliev08](https://github.com/borislav-iliev08)
+- **Email:** borislav718@gmail.com
+---
+
+##  License
+
+This project is open-source and available under the [MIT License](LICENSE).

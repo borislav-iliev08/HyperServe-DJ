@@ -29,13 +29,17 @@
     </div>
     <div class="home-list">
         {% for restaurant in top_restaurants %}
-            <article class="home-rank-card"><span class="home-rank">
-                {{ forloop.counter|stringformat:"02d" }}</span>
+            <article class="home-rank-card">
+                <span class="home-rank">
+                {{ forloop.counter|stringformat:"02d" }}
+                </span>
                 <div class="home-rank-copy">
                     <h3>
                         <a href="{% url 'restaurant-detail' slug=restaurant.slug|default:restaurant.pk %}">{{ restaurant.name }}</a>
-                    </h3><p>{{ restaurant.cuisine_type }}</p>
-                </div><span class="home-score">★ {{ restaurant.avg_rating|floatformat:1|default:"—" }}</span>
+                    </h3>
+                    <p>{{ restaurant.cuisine_type }}</p>
+                </div>
+                <span class="home-score">★ {{ restaurant.avg_rating|floatformat:1|default:"—" }}</span>
             </article>
         {% empty %}
             <p class="home-empty">Restaurant ratings will appear here as guests leave reviews.</p>
@@ -83,17 +87,21 @@
     <div class="home-list home-review-list">
         {% for review in latest_reviews %}
             <article class="home-review-card">
-                <div class="home-review-top"><span class="home-score">★ {{ review.rating|floatformat:1 }}</span><span>{{ review.created_at|date:"M d" }}</span>
+                <div class="home-review-top">
+                    <span class="home-score">★ {{ review.rating|floatformat:1 }}</span>
+                    <span>{{ review.created_at|date:"M d" }}</span>
                 </div>
                 {% if review.is_flagged %}
                     <span class="flagged-status">
                         <i aria-hidden="true"></i>inappropriate language</span>
                 {% endif %}
                 <h3>
-                    <a href="/reviews/{{ review.pk }}/">{{ review.title }}</a></h3>
+                    <a href="/reviews/{{ review.pk }}/">{{ review.title }}</a>
+                </h3>
                 <p>{{ review.content|truncatewords:12 }}</p>
                 <div class="home-review-byline">By {{ review.author }}
-                    {% if review.restaurant %}<span>{{ review.restaurant.name }}</span>
+                    {% if review.restaurant %}
+                        <span>{{ review.restaurant.name }}</span>
                     {% endif %}
                 </div>
             </article>

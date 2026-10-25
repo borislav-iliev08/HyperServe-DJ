@@ -60,7 +60,11 @@
                         <p>{{ review.content|truncatechars:180 }}</p>
                         <small>By {{ review.author }} <span>{{ review.created_at|date:"M d, Y" }}</span></small>
                         <div class="review-card-actions">
-                            {% if review.restaurant %}<a class="button button-small review-detail-button restaurant-card-action" href="/restaurants/{{ review.restaurant.slug|default:review.restaurant.pk }}/">{{ review.restaurant.name|truncatechars:18 }} <span>&rarr;</span></a>
+                            {% if review.restaurant %}
+                                <a class="button button-small review-detail-button restaurant-card-action" href="/restaurants/{{ review.restaurant.slug|default:review.restaurant.pk }}/">
+                                    {{ review.restaurant.name|truncatechars:18 }}
+                                    <span>&rarr;</span>
+                                </a>
                             {% else %}
                                 <span aria-hidden="true"></span>
                             {% endif %}
@@ -68,7 +72,10 @@
                         </div>
                     </article>
                     {% empty %}
-                    <div class="empty-state restaurant-empty-state"><h3>No reviews found</h3><p>Try another search or change the review status filter.</p></div>
+                    <div class="empty-state restaurant-empty-state">
+                        <h3>No reviews found</h3>
+                        <p>Try another search or change the review status filter.</p>
+                    </div>
                     {% endfor %}
                 </div>
                 {% if is_paginated %}

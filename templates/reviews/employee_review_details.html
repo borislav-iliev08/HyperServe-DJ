@@ -10,16 +10,28 @@
         </nav>
         <article class="review-detail-card">
             <div class="review-detail-card-top">
-                <p class="eyebrow"><span></span> A team story</p>
-                <div class="review-detail-score" aria-label="Rated {{ review.rating|floatformat:1 }} out of 5"><span aria-hidden="true">&#9733;</span><strong>{{ review.rating|floatformat:1 }}</strong><small>out of 5</small></div>
+                <p class="eyebrow">
+                    <span></span> A team story
+                </p>
+                <div class="review-detail-score" aria-label="Rated {{ review.rating|floatformat:1 }} out of 5">
+                    <span aria-hidden="true">&#9733;</span>
+                    <strong>{{ review.rating|floatformat:1 }}</strong>
+                    <small>out of 5</small>
+                </div>
             </div>
-            {% if review.is_flagged %}<span class="flagged-status"><i aria-hidden="true"></i>Flagged for review</span>{% endif %}
+            {% if review.is_flagged %}
+                <span class="flagged-status">
+                    <i aria-hidden="true"></i>Flagged for review</span>
+            {% endif %}
             <h1>{{ review.title }}</h1>
             <blockquote class="review-detail-quote">{{ review.content }}</blockquote>
             <div class="review-detail-footer">
                 <div class="review-detail-author">
                     <span class="review-detail-avatar" aria-hidden="true">{{ review.author|first|upper }}</span>
-                    <span class="review-detail-author-copy"><strong>{{ review.author }}</strong><small>Guest review · {{ review.created_at|date:"F j, Y" }}</small></span>
+                    <span class="review-detail-author-copy">
+                        <strong>{{ review.author }}</strong>
+                        <small>Guest review · {{ review.created_at|date:"F j, Y" }}</small>
+                    </span>
                 </div>
                 <a class="review-detail-restaurant" href="{% url 'employee-detail' pk=review.employee.pk %}">
                     <span class="review-detail-restaurant-label">For team member</span>
@@ -33,7 +45,9 @@
 
 
             </div>
-            <div class="employee-review-detail-back"><a class="button employee-review-list-button" href="{% url 'employee-reviews-list' %}"><span aria-hidden="true">&larr;</span> All employee reviews</a></div>
+            <div class="employee-review-detail-back"><a class="button employee-review-list-button" href="{% url 'employee-reviews-list' %}">
+                <span aria-hidden="true">&larr;</span> All employee reviews</a>
+            </div>
         </article>
     </div>
 </section>

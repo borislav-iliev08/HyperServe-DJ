@@ -101,7 +101,7 @@ class EmployeesReviewsListView(ListView):
     paginate_orphans = 5
 
     def get_template_names(self):
-        return ['reviews/employee_reviews_list.html']
+        return ['employees/reviews_list.html']
 
     def get_queryset(self):
         query = super().get_queryset().select_related('restaurant')

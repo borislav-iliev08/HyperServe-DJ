@@ -7,18 +7,31 @@
             <p class="review-editor-kicker"><span></span> Guest notes</p>
             <h1>Polish your <em>story.</em></h1>
             <p>Make any changes needed to your feedback.</p>
-            <div class="review-editor-restaurant"><span>Review for</span><strong>{{ review.employee.first_name }} {{ review.employee.last_name }}</strong></div>
+            <div class="review-editor-restaurant">
+                <span>Review for</span>
+                <strong>{{ review.employee.first_name }} {{ review.employee.last_name }}</strong>
+            </div>
             <a class="review-editor-back" href="{% url 'employee-review-detail' pk=review.pk %}">&larr; Back to review</a>
         </aside>
         <form method="post" novalidate class="review-editor-form">
-            {% csrf_token %}{{ form.non_field_errors }}
-            <div class="review-editor-form-heading"><span class="review-editor-form-icon" aria-hidden="true">&#9998;</span><div><small>REVIEW EDITOR</small><h2>Update your feedback</h2></div></div>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="review-editor-form-heading">
+                <span class="review-editor-form-icon" aria-hidden="true">&#9998;</span>
+                <div>
+                    <small>REVIEW EDITOR</small>
+                    <h2>Update your feedback</h2>
+                </div>
+            </div>
             <div class="review-editor-fields">
                 {% for field in form %}
                 <div class="review-editor-field{% if field.name == 'content' %} review-editor-field-wide{% endif %}">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>
                 {% endfor %}
             </div>
-            <div class="review-editor-actions"><a class="button button-light" href="{% url 'employee-review-detail' pk=review.pk %}">Cancel</a><button class="button review-editor-save" type="submit">Save changes <span>&rarr;</span></button></div>
+            <div class="review-editor-actions"><a class="button button-light" href="{% url 'employee-review-detail' pk=review.pk %}">Cancel</a>
+                <button class="button review-editor-save" type="submit">Save changes <span>&rarr;</span>
+                </button>
+            </div>
         </form>
     </div>
 </section>

@@ -21,21 +21,30 @@
             {{ form.non_field_errors }}
             <div class="review-editor-form-heading">
                 <span class="review-editor-form-icon" aria-hidden="true">&#10024;</span>
-                <div><small>GUEST REVIEW</small><h2>Your experience</h2></div>
+                <div>
+                    <small>GUEST REVIEW</small>
+                    <h2>Your experience</h2>
+                </div>
             </div>
             <div class="review-editor-fields">
                 {% for field in form %}
                 <div class="review-editor-field{% if field.name == 'content' %} review-editor-field-wide{% endif %}">
                     {{ field.label_tag }}
                     {{ field }}
-                    {% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}
+                    {% if field.help_text %}
+                        <small class="helptext">{{ field.help_text }}</small>
+                    {% endif %}
                     {{ field.errors }}
                 </div>
                 {% endfor %}
             </div>
             <div class="review-editor-actions">
                 <a class="button button-light" href="{% if restaurant %}/restaurants/{{ restaurant.slug|default:restaurant.pk }}/{% else %}{% url 'reviews-list' %}{% endif %}">Cancel</a>
-                <button class="button review-editor-save" type="submit">Publish review <span>&rarr;</span></button>
+                <button class="button review-editor-save" type="submit">Publish review
+                    <span>
+                        &rarr;
+                    </span>
+                </button>
             </div>
         </form>
     </div>

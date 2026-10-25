@@ -15,7 +15,10 @@
             {% if form.instance.image %}
                 <div class="restaurant-edit-photo">
                     <img src="{{ form.instance.image.url }}" alt="{{ form.instance.name }}">
-                    <div><span>Current restaurant photo</span><strong>{{ form.instance.name }}</strong></div>
+                    <div>
+                        <span>Current restaurant photo</span>
+                        <strong>{{ form.instance.name }}</strong
+                    </div>
                 </div>
             {% endif %}
             <div class="restaurant-edit-fields">
@@ -23,7 +26,9 @@
                     <div class="restaurant-edit-field{% if field.name == 'description' or field.name == 'perks' %} restaurant-edit-field-wide{% endif %}{% if field.name == 'perks' %} restaurant-edit-perks{% endif %}">
                         {{ field.label_tag }}
                         {{ field }}
-                        {% if field.help_text %}<small class="helptext">{{ field.help_text }}</small>{% endif %}
+                        {% if field.help_text %}
+                            <small class="helptext">{{ field.help_text }}</small>
+                        {% endif %}
                         {{ field.errors }}
                     </div>
                 {% endfor %}
