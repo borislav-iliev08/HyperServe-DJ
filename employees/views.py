@@ -13,9 +13,12 @@ from restaurants.models import Restaurant
 class EmployeesListView(ListView):
     model = Employee
     context_object_name = 'employees'
-    template_name = 'employees/list.html'
     paginate_by = 12
     paginate_orphans = 5
+
+    def get_template_names(self):
+        return ['employees/list.html']
+
 
     def get_queryset(self):
         queryset = super().get_queryset().select_related('restaurant').annotate(
@@ -46,9 +49,11 @@ class EmployeesListView(ListView):
 class EmployeeReviewsListView(ListView):
     model = EmployeeReview
     context_object_name = 'employee_reviews'
-    template_name = 'employees/reviews_list.html'
     paginate_by = 12
     paginate_orphans = 5
+
+    def get_template_names(self):
+        return ['employees/reviews_list.html']
 
     def get_queryset(self):
         queryset = super().get_queryset().select_related('employee', 'employee__restaurant')
@@ -79,7 +84,9 @@ class EmployeeReviewsListView(ListView):
 class EmployeesDetailsView(DetailView):
     model = Employee
     context_object_name = 'employee'
-    template_name = 'employees/details.html'
+
+    def get_template_names(self):
+        return ['employees/details.html']
 
     def get_queryset(self):
         review_queryset = EmployeeReview.objects.order_by('-created_at')
@@ -91,7 +98,9 @@ class EmployeesDetailsView(DetailView):
 class EmployeeReviewDetailView(DetailView):
     model = EmployeeReview
     context_object_name = 'review'
-    template_name = 'reviews/employee_review_details.html'
+
+    def get_template_names(self):
+        return ['reviews/employee_review_details.html']
 
     def get_queryset(self):
         return super().get_queryset().select_related('employee', 'employee__restaurant')
@@ -101,8 +110,10 @@ class EmployeesCreateView(CreateView):
     model = Employee
     form_class = EmployeeCreateForm
     context_object_name = 'employee'
-    template_name = 'employees/create.html'
     success_url = reverse_lazy('employees-list')
+
+    def get_template_names(self):
+        return ['employees/create.html']
 
     def get_success_url(self):
         if self.object.restaurant_id:
@@ -128,8 +139,10 @@ class EmployeesCreateView(CreateView):
 class EmployeeReviewCreateView(CreateView):
     model = EmployeeReview
     form_class = EmployeeReviewCreateForm
-    template_name = 'reviews/employee_review_create.html'
     context_object_name = 'review'
+
+    def get_template_names(self):
+        return ['reviews/employee_review_create.html']
 
     def get_employee(self):
         return get_object_or_404(Employee, pk=self.kwargs['employee_pk'])
@@ -150,8 +163,10 @@ class EmployeeReviewCreateView(CreateView):
 class EmployeeReviewEditView(UpdateView):
     model = EmployeeReview
     form_class = EmployeeReviewEditForm
-    template_name = 'reviews/employee_review_edit.html'
     context_object_name = 'review'
+
+    def get_template_names(self):
+        return 'reviews/employee_review_edit.html'
 
     def get_queryset(self):
         return super().get_queryset().select_related('employee')
@@ -162,8 +177,10 @@ class EmployeeReviewEditView(UpdateView):
 
 class EmployeeReviewDeleteView(DeleteView):
     model = EmployeeReview
-    template_name = 'reviews/employee_review_delete.html'
     context_object_name = 'review'
+
+    def get_template_names(self):
+        return ['reviews/employee_review_delete.html']
 
     def get_queryset(self):
         return super().get_queryset().select_related('employee')
@@ -175,13 +192,16 @@ class EmployeeReviewDeleteView(DeleteView):
 class EmployeesDeleteView(DeleteView):
     model = Employee
     context_object_name = 'employee'
-    template_name = 'employees/delete.html'
     success_url = reverse_lazy('employees-list')
 
+    def get_template_names(self):
+        return ['employees/delete.html']
 
 class EmployeesEditView(UpdateView):
     model = Employee
     form_class = EmployeeEditForm
     context_object_name = 'employee'
-    template_name = 'employees/edit.html'
     success_url = reverse_lazy('employees-list')
+
+    def get_template_names(self):
+        return ['employees/edit.html']

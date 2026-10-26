@@ -1,4 +1,6 @@
 from django.urls import path
+from django.views import View
+
 from restaurants.views import (
     RestaurantCreateView,
     RestaurantDeleteView,
